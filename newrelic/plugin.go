@@ -22,6 +22,7 @@ func Plugin(ctx context.Context) *plugin.Plugin {
 			"newrelic_alert_incident":              tableAlertIncident(),
 			"newrelic_alert_policy":                tableAlertPolicy(),
 			"newrelic_apm_application":             tableApmApplication(),
+			"newrelic_apm_application_deployment":  tableApmApplicationDeployment(),
 			"newrelic_apm_application_instance":    tableApmApplicationInstance(),
 			"newrelic_apm_application_metric":      tableApmApplicationMetric(),
 			"newrelic_apm_application_metric_data": tableApmApplicationMetricData(),
