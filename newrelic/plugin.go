@@ -27,6 +27,8 @@ func Plugin(ctx context.Context) *plugin.Plugin {
 			"newrelic_apm_application_metric":      tableApmApplicationMetric(),
 			"newrelic_apm_application_metric_data": tableApmApplicationMetricData(),
 			"newrelic_apm_label":                   tableApmLabel(),
+			"newrelic_plugin":                      tablePlugin(),
+			"newrelic_component":                   tableComponent(),
 		},
 	}
 
