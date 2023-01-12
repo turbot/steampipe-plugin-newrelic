@@ -4,9 +4,9 @@ import (
 	"context"
 	"fmt"
 	"github.com/newrelic/newrelic-client-go/v2/pkg/plugins"
-	"github.com/turbot/steampipe-plugin-sdk/v4/grpc/proto"
-	"github.com/turbot/steampipe-plugin-sdk/v4/plugin"
-	"github.com/turbot/steampipe-plugin-sdk/v4/plugin/transform"
+	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
+	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
+	"github.com/turbot/steampipe-plugin-sdk/v5/plugin/transform"
 )
 
 func tablePlugin() *plugin.Table {
@@ -30,7 +30,7 @@ func getPlugins(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateData)
 		return nil, fmt.Errorf("unable to establish a connection: %v", err)
 	}
 
-	pluginId := int(d.KeyColumnQuals["id"].GetInt64Value())
+	pluginId := int(d.EqualsQuals["id"].GetInt64Value())
 	params := plugins.GetPluginParams{Detailed: true}
 
 	p, err := client.Plugins.GetPlugin(pluginId, &params)

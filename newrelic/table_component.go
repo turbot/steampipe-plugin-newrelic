@@ -4,9 +4,9 @@ import (
 	"context"
 	"fmt"
 	"github.com/newrelic/newrelic-client-go/v2/pkg/plugins"
-	"github.com/turbot/steampipe-plugin-sdk/v4/grpc/proto"
-	"github.com/turbot/steampipe-plugin-sdk/v4/plugin"
-	"github.com/turbot/steampipe-plugin-sdk/v4/plugin/transform"
+	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
+	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
+	"github.com/turbot/steampipe-plugin-sdk/v5/plugin/transform"
 )
 
 func tableComponent() *plugin.Table {
@@ -40,7 +40,7 @@ func getComponent(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateDat
 		return nil, fmt.Errorf("unable to establish a connection: %v", err)
 	}
 
-	componentId := int(d.KeyColumnQuals["id"].GetInt64Value())
+	componentId := int(d.EqualsQuals["id"].GetInt64Value())
 
 	c, err := client.Plugins.GetComponent(componentId)
 	if err != nil {
@@ -57,7 +57,7 @@ func listComponents(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateD
 	}
 
 	params := plugins.ListComponentsParams{HealthStatus: true}
-	q := d.KeyColumnQuals
+	q := d.EqualsQuals
 
 	if q["plugin_id"] != nil {
 		params.PluginID = int(q["plugin_id"].GetInt64Value())

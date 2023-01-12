@@ -4,9 +4,9 @@ import (
 	"context"
 	"fmt"
 	"github.com/newrelic/newrelic-client-go/v2/pkg/apm"
-	"github.com/turbot/steampipe-plugin-sdk/v4/grpc/proto"
-	"github.com/turbot/steampipe-plugin-sdk/v4/plugin"
-	"github.com/turbot/steampipe-plugin-sdk/v4/plugin/transform"
+	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
+	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
+	"github.com/turbot/steampipe-plugin-sdk/v5/plugin/transform"
 )
 
 func tableApmApplication() *plugin.Table {
@@ -40,7 +40,7 @@ func getApmApplication(ctx context.Context, d *plugin.QueryData, h *plugin.Hydra
 		return nil, fmt.Errorf("unable to establish a connection: %v", err)
 	}
 
-	appId := int(d.KeyColumnQuals["id"].GetInt64Value())
+	appId := int(d.EqualsQuals["id"].GetInt64Value())
 
 	app, err := client.APM.GetApplicationWithContext(ctx, appId)
 	if err != nil {
@@ -57,7 +57,7 @@ func listApmApplications(ctx context.Context, d *plugin.QueryData, h *plugin.Hyd
 	}
 
 	params := &apm.ListApplicationsParams{}
-	q := d.KeyColumnQuals
+	q := d.EqualsQuals
 	if q["name"] != nil {
 		params.Name = q["name"].GetStringValue()
 	}

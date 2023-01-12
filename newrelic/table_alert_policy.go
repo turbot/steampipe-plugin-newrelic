@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 	"github.com/newrelic/newrelic-client-go/v2/pkg/alerts"
-	"github.com/turbot/steampipe-plugin-sdk/v4/grpc/proto"
-	"github.com/turbot/steampipe-plugin-sdk/v4/plugin"
+	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
+	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
 )
 
 func tableAlertPolicy() *plugin.Table {
@@ -36,7 +36,7 @@ func getAlertPolicy(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateD
 		return nil, fmt.Errorf("unable to establish a connection: %v", err)
 	}
 
-	policyId := int(d.KeyColumnQuals["id"].GetInt64Value())
+	policyId := int(d.EqualsQuals["id"].GetInt64Value())
 
 	p, err := client.Alerts.GetPolicy(policyId)
 	if err != nil {
@@ -54,8 +54,8 @@ func listAlertPolicies(ctx context.Context, d *plugin.QueryData, h *plugin.Hydra
 
 	params := alerts.ListPoliciesParams{}
 
-	if d.KeyColumnQuals["name"] != nil {
-		params.Name = d.KeyColumnQuals["name"].GetStringValue()
+	if d.EqualsQuals["name"] != nil {
+		params.Name = d.EqualsQuals["name"].GetStringValue()
 	}
 
 	ps, err := client.Alerts.ListPoliciesWithContext(ctx, &params)

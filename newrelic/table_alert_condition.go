@@ -3,9 +3,9 @@ package newrelic
 import (
 	"context"
 	"fmt"
-	"github.com/turbot/steampipe-plugin-sdk/v4/grpc/proto"
-	"github.com/turbot/steampipe-plugin-sdk/v4/plugin"
-	"github.com/turbot/steampipe-plugin-sdk/v4/plugin/transform"
+	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
+	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
+	"github.com/turbot/steampipe-plugin-sdk/v5/plugin/transform"
 )
 
 func tableAlertCondition() *plugin.Table {
@@ -41,8 +41,8 @@ func getAlertCondition(ctx context.Context, d *plugin.QueryData, h *plugin.Hydra
 		return nil, fmt.Errorf("unable to establish a connection: %v", err)
 	}
 
-	conditionId := int(d.KeyColumnQuals["id"].GetInt64Value())
-	policyId := int(d.KeyColumnQuals["policy_id"].GetInt64Value())
+	conditionId := int(d.EqualsQuals["id"].GetInt64Value())
+	policyId := int(d.EqualsQuals["policy_id"].GetInt64Value())
 
 	c, err := client.Alerts.GetConditionWithContext(ctx, policyId, conditionId)
 	if err != nil {
@@ -58,7 +58,7 @@ func listAlertConditions(ctx context.Context, d *plugin.QueryData, h *plugin.Hyd
 		return nil, fmt.Errorf("unable to establish a connection: %v", err)
 	}
 
-	policyId := int(d.KeyColumnQuals["policy_id"].GetInt64Value())
+	policyId := int(d.EqualsQuals["policy_id"].GetInt64Value())
 
 	acs, err := client.Alerts.ListConditionsWithContext(ctx, policyId)
 	if err != nil {

@@ -3,9 +3,9 @@ package newrelic
 import (
 	"context"
 	"fmt"
-	"github.com/turbot/steampipe-plugin-sdk/v4/grpc/proto"
-	"github.com/turbot/steampipe-plugin-sdk/v4/plugin"
-	"github.com/turbot/steampipe-plugin-sdk/v4/plugin/transform"
+	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
+	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
+	"github.com/turbot/steampipe-plugin-sdk/v5/plugin/transform"
 )
 
 func tableAlertChannel() *plugin.Table {
@@ -29,7 +29,7 @@ func getAlertChannel(ctx context.Context, d *plugin.QueryData, h *plugin.Hydrate
 		return nil, fmt.Errorf("unable to establish a connection: %v", err)
 	}
 
-	channelId := int(d.KeyColumnQuals["id"].GetInt64Value())
+	channelId := int(d.EqualsQuals["id"].GetInt64Value())
 
 	c, err := client.Alerts.GetChannelWithContext(ctx, channelId)
 	if err != nil {

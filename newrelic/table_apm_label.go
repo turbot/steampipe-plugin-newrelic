@@ -3,9 +3,9 @@ package newrelic
 import (
 	"context"
 	"fmt"
-	"github.com/turbot/steampipe-plugin-sdk/v4/grpc/proto"
-	"github.com/turbot/steampipe-plugin-sdk/v4/plugin"
-	"github.com/turbot/steampipe-plugin-sdk/v4/plugin/transform"
+	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
+	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
+	"github.com/turbot/steampipe-plugin-sdk/v5/plugin/transform"
 )
 
 func tableApmLabel() *plugin.Table {
@@ -29,7 +29,7 @@ func getApmLabel(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateData
 		return nil, fmt.Errorf("unable to establish a connection: %v", err)
 	}
 
-	key := d.KeyColumnQuals["key"].GetStringValue()
+	key := d.EqualsQuals["key"].GetStringValue()
 
 	label, err := client.APM.GetLabelWithContext(ctx, key)
 	if err != nil {

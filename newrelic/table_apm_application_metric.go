@@ -4,9 +4,9 @@ import (
 	"context"
 	"fmt"
 	"github.com/newrelic/newrelic-client-go/v2/pkg/apm"
-	"github.com/turbot/steampipe-plugin-sdk/v4/grpc/proto"
-	"github.com/turbot/steampipe-plugin-sdk/v4/plugin"
-	"github.com/turbot/steampipe-plugin-sdk/v4/plugin/transform"
+	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
+	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
+	"github.com/turbot/steampipe-plugin-sdk/v5/plugin/transform"
 )
 
 func tableApmApplicationMetric() *plugin.Table {
@@ -37,7 +37,7 @@ func listApmApplicationMetrics(ctx context.Context, d *plugin.QueryData, h *plug
 		return nil, fmt.Errorf("unable to establish a connection: %v", err)
 	}
 
-	q := d.KeyColumnQuals
+	q := d.EqualsQuals
 	appId := int(q["app_id"].GetInt64Value())
 
 	params := apm.MetricNamesParams{}

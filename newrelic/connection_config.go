@@ -4,8 +4,8 @@ import (
 	"context"
 	"errors"
 	"github.com/newrelic/newrelic-client-go/v2/newrelic"
-	"github.com/turbot/steampipe-plugin-sdk/v4/plugin"
-	"github.com/turbot/steampipe-plugin-sdk/v4/plugin/schema"
+	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
+	"github.com/turbot/steampipe-plugin-sdk/v5/plugin/schema"
 	"os"
 )
 

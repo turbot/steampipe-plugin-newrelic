@@ -3,9 +3,9 @@ package newrelic
 import (
 	"context"
 	"fmt"
-	"github.com/turbot/steampipe-plugin-sdk/v4/grpc/proto"
-	"github.com/turbot/steampipe-plugin-sdk/v4/plugin"
-	"github.com/turbot/steampipe-plugin-sdk/v4/plugin/transform"
+	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
+	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
+	"github.com/turbot/steampipe-plugin-sdk/v5/plugin/transform"
 )
 
 func tableApmApplicationDeployment() *plugin.Table {
@@ -32,7 +32,7 @@ func listApmApplicationDeployments(ctx context.Context, d *plugin.QueryData, h *
 		return nil, fmt.Errorf("unable to establish a connection: %v", err)
 	}
 
-	q := d.KeyColumnQuals
+	q := d.EqualsQuals
 	appId := int(q["app_id"].GetInt64Value())
 
 	deployments, err := client.APM.ListDeploymentsWithContext(ctx, appId)

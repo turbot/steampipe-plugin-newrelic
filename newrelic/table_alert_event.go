@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 	"github.com/newrelic/newrelic-client-go/v2/pkg/alerts"
-	"github.com/turbot/steampipe-plugin-sdk/v4/grpc/proto"
-	"github.com/turbot/steampipe-plugin-sdk/v4/plugin"
+	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
+	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
 )
 
 func tableAlertEvent() *plugin.Table {
@@ -59,28 +59,28 @@ func listAlertEvents(ctx context.Context, d *plugin.QueryData, h *plugin.Hydrate
 
 	params := alerts.ListAlertEventsParams{}
 
-	if d.KeyColumnQuals["product"] != nil {
-		params.Product = d.KeyColumnQuals["product"].GetStringValue()
+	if d.EqualsQuals["product"] != nil {
+		params.Product = d.EqualsQuals["product"].GetStringValue()
 	}
 
-	if d.KeyColumnQuals["entity_type"] != nil {
-		params.EntityType = d.KeyColumnQuals["entity_type"].GetStringValue()
+	if d.EqualsQuals["entity_type"] != nil {
+		params.EntityType = d.EqualsQuals["entity_type"].GetStringValue()
 	}
 
-	if d.KeyColumnQuals["entity_group_id"] != nil {
-		params.EntityGroupID = int(d.KeyColumnQuals["entity_group_id"].GetInt64Value())
+	if d.EqualsQuals["entity_group_id"] != nil {
+		params.EntityGroupID = int(d.EqualsQuals["entity_group_id"].GetInt64Value())
 	}
 
-	if d.KeyColumnQuals["entity_id"] != nil {
-		params.EntityID = int(d.KeyColumnQuals["entity_id"].GetInt64Value())
+	if d.EqualsQuals["entity_id"] != nil {
+		params.EntityID = int(d.EqualsQuals["entity_id"].GetInt64Value())
 	}
 
-	if d.KeyColumnQuals["event_type"] != nil {
-		params.EventType = d.KeyColumnQuals["event_type"].GetStringValue()
+	if d.EqualsQuals["event_type"] != nil {
+		params.EventType = d.EqualsQuals["event_type"].GetStringValue()
 	}
 
-	if d.KeyColumnQuals["incident_id"] != nil {
-		params.IncidentID = int(d.KeyColumnQuals["incident_id"].GetInt64Value())
+	if d.EqualsQuals["incident_id"] != nil {
+		params.IncidentID = int(d.EqualsQuals["incident_id"].GetInt64Value())
 	}
 
 	aes, err := client.Alerts.ListAlertEventsWithContext(ctx, &params)
