@@ -2,17 +2,17 @@
 
 Use SQL to instantly query NewRelic Alerts, Events, Dashboards and more. Open source CLI. No DB required.
 
-- **[Get started ->](https://hub.steampipe.io/plugins/theapsgroup/newrelic)**
-- Documentation: [Table definitions & examples](https://hub.steampipe.io/plugins/theapsgroup/newrelic/tables)
+- **[Get started ->](https://hub.steampipe.io/plugins/turbot/newrelic)**
+- Documentation: [Table definitions & examples](https://hub.steampipe.io/plugins/turbot/newrelic/tables)
 - Community: [Slack Channel](https://steampipe.io/community/join)
-- Get involved: [Issues](https://github.com/theapsgroup/steampipe-plugin-newrelic/issues)
+- Get involved: [Issues](https://github.com/turbot/steampipe-plugin-newrelic/issues)
 
 ## Quick start
 
 Install the plugin with [Steampipe](https://steampipe.io):
 
 ```shell
-steampipe plugin install theapsgroup/newrelic
+steampipe plugin install newrelic
 ```
 
 Setup the configuration:
@@ -37,7 +37,7 @@ Prerequisites:
 Clone:
 
 ```shell
-git clone https://github.com/theapsgroup/steampipe-plugin-newrelic.git
+git clone https://github.com/turbot/steampipe-plugin-newrelic.git
 cd steampipe-plugin-newrelic
 ```
 
@@ -73,4 +73,4 @@ Please see the [contribution guidelines](https://github.com/turbot/steampipe/blo
 `help wanted` issues:
 
 - [Steampipe](https://github.com/turbot/steampipe/labels/help%20wanted)
-- [NewRelic Plugin](https://github.com/theapsgroup/steampipe-plugin-newrelic/labels/help%20wanted)
+- [NewRelic Plugin](https://github.com/turbot/steampipe-plugin-newrelic/labels/help%20wanted)

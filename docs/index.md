@@ -1,13 +1,13 @@
 ---
-organization: The APS Group
+organization: Turbot
 category: ["saas"]
-icon_url: "/images/plugins/theapsgroup/newrelic.svg"
+icon_url: "/images/plugins/turbot/newrelic.svg"
 brand_color: "#1CE783"
 display_name: "NewRelic"
 short_name: "newrelic"
 description: "Steampipe plugin for querying NewRelic Alerts, Events and other resources."
 og_description: Query NewRelic with SQL! Open source CLI. No DB required.
-og_image: "/images/plugins/theapsgroup/newrelic-social-graphic.png"
+og_image: "/images/plugins/turbot/newrelic-social-graphic.png"
 ---
 
 # NewRelic + Steampipe
@@ -18,14 +18,14 @@ og_image: "/images/plugins/theapsgroup/newrelic-social-graphic.png"
 
 ## Documentation
 
-- [Table definitions / examples](https://hub.steampipe.io/plugins/theapsgroup/newrelic/tables)
+- [Table definitions / examples](https://hub.steampipe.io/plugins/turbot/newrelic/tables)
 
 ## Getting Started
 
 ### Installation
 
 ```shell
-steampipe plugin install theapsgroup/newrelic
+steampipe plugin install newrelic
 ```
 
 ### Credentials
@@ -46,7 +46,7 @@ Configuration File:
 
 ```hcl
 connection "newrelic" {
-  plugin  = "theapsgroup/newrelic"
+  plugin  = "newrelic"
   token   = "854335b43rc4t32rt3c347238v5"
 }
 ```
