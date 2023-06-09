@@ -29,6 +29,7 @@ func Plugin(ctx context.Context) *plugin.Plugin {
 			"newrelic_apm_label":                   tableApmLabel(),
 			"newrelic_plugin":                      tablePlugin(),
 			"newrelic_component":                   tableComponent(),
+			"newrelic_notification_channel":        tableNotificationChannel(),
 		},
 	}
 
