@@ -30,6 +30,7 @@ func Plugin(ctx context.Context) *plugin.Plugin {
 			"newrelic_plugin":                      tablePlugin(),
 			"newrelic_component":                   tableComponent(),
 			"newrelic_notification_channel":        tableNotificationChannel(),
+			"newrelic_notification_destination":    tableNotificationDestination(),
 		},
 	}
 
