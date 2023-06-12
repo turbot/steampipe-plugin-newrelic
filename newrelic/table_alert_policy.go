@@ -78,7 +78,7 @@ func alertPolicyColumns() []*plugin.Column {
 			Type:        proto.ColumnType_INT,
 		},
 		{
-			Name:        "Name",
+			Name:        "name",
 			Description: "Name of the policy",
 			Type:        proto.ColumnType_STRING,
 		},
