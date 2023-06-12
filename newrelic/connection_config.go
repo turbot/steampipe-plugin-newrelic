@@ -11,10 +11,14 @@ import (
 
 type PluginConfig struct {
 	APIKey *string `cty:"api_key"`
+	Region *string `cty:"region"`
 }
 
 var ConfigSchema = map[string]*schema.Attribute{
 	"api_key": {
+		Type: schema.TypeString,
+	},
+	"region": {
 		Type: schema.TypeString,
 	},
 }
@@ -34,17 +38,26 @@ func GetConfig(connection *plugin.Connection) PluginConfig {
 
 func connect(_ context.Context, d *plugin.QueryData) (*newrelic.NewRelic, error) {
 	apiKey := os.Getenv("NEW_RELIC_API_KEY")
+	region := os.Getenv("NEW_RELIC_REGION")
 
 	nrConfig := GetConfig(d.Connection)
 	if nrConfig.APIKey != nil {
 		apiKey = *nrConfig.APIKey
 	}
 
+	if nrConfig.Region != nil {
+		region = *nrConfig.Region
+	}
+
 	if apiKey == "" {
 		return nil, errors.New("the 'api_key' must be set in the connection configuration file or 'NEW_RELIC_API_KEY' env var must be set. Please set and then restart Steampipe")
 	}
 
-	client, err := newrelic.New(newrelic.ConfigPersonalAPIKey(apiKey))
+	if region == "" {
+		region = "us" // Default to US
+	}
+
+	client, err := newrelic.New(newrelic.ConfigPersonalAPIKey(apiKey), newrelic.ConfigRegion(region))
 	if err != nil {
 		return nil, err
 	}
