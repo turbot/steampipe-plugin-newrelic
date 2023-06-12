@@ -6,6 +6,7 @@ import (
 	"github.com/newrelic/newrelic-client-go/v2/pkg/alerts"
 	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
 	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
+	"github.com/turbot/steampipe-plugin-sdk/v5/plugin/transform"
 )
 
 func tableAlertEvent() *plugin.Table {
@@ -146,6 +147,7 @@ func alertEventColumns() []*plugin.Column {
 			Name:        "timestamp",
 			Description: "Timestamp when alert event was raised",
 			Type:        proto.ColumnType_TIMESTAMP,
+			Transform:   transform.FromField("Timestamp").Transform(epochTransform),
 		},
 	}
 }

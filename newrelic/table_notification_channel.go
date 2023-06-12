@@ -7,6 +7,7 @@ import (
 	"github.com/newrelic/newrelic-client-go/v2/pkg/notifications"
 	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
 	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
+	"github.com/turbot/steampipe-plugin-sdk/v5/plugin/transform"
 )
 
 func tableNotificationChannel() *plugin.Table {
@@ -65,7 +66,7 @@ func notificationChannelColumns() []*plugin.Column {
 	return []*plugin.Column{
 		{Name: "account_id", Description: "ID of the account the channel belongs to", Type: proto.ColumnType_INT},
 		{Name: "active", Description: "Indicates if the channel is enabled", Type: proto.ColumnType_BOOL},
-		{Name: "created_at", Description: "Timestamp when the channel was created", Type: proto.ColumnType_TIMESTAMP},
+		{Name: "created_at", Description: "Timestamp when the channel was created", Type: proto.ColumnType_TIMESTAMP, Transform: transform.FromField("CreatedAt").Transform(nrDateTransform)},
 		{Name: "destination_id", Description: "The ID of the notification destination", Type: proto.ColumnType_STRING},
 		{Name: "id", Description: "ID of the channel", Type: proto.ColumnType_STRING},
 		{Name: "name", Description: "Name of the channel", Type: proto.ColumnType_STRING},
@@ -73,7 +74,7 @@ func notificationChannelColumns() []*plugin.Column {
 		{Name: "properties", Description: "Array of properties associated with the channel", Type: proto.ColumnType_JSON},
 		{Name: "status", Description: "Status of the channel", Type: proto.ColumnType_STRING},
 		{Name: "type", Description: "Type of the channel", Type: proto.ColumnType_STRING},
-		{Name: "updated_at", Description: "Timestamp when  channel was last updated", Type: proto.ColumnType_TIMESTAMP},
+		{Name: "updated_at", Description: "Timestamp when  channel was last updated", Type: proto.ColumnType_TIMESTAMP, Transform: transform.FromField("UpdatedAt").Transform(nrDateTransform)},
 		{Name: "updated_by", Description: "The ID of the user which last updated the channel", Type: proto.ColumnType_INT},
 	}
 }

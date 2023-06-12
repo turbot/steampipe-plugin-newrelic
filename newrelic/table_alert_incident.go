@@ -48,11 +48,13 @@ func alertIncidentColumns() []*plugin.Column {
 			Name:        "opened_at",
 			Description: "Timestamp of when the incident was created",
 			Type:        proto.ColumnType_TIMESTAMP,
+			Transform:   transform.FromField("OpenedAt").Transform(epochTransform),
 		},
 		{
 			Name:        "closed_at",
 			Description: "Timestamp of when the incident was closed",
 			Type:        proto.ColumnType_TIMESTAMP,
+			Transform:   transform.FromField("CreatedAt").Transform(epochTransform),
 		},
 		{
 			Name:        "incident_preference",

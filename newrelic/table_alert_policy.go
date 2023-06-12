@@ -6,6 +6,7 @@ import (
 	"github.com/newrelic/newrelic-client-go/v2/pkg/alerts"
 	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
 	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
+	"github.com/turbot/steampipe-plugin-sdk/v5/plugin/transform"
 )
 
 func tableAlertPolicy() *plugin.Table {
@@ -91,11 +92,13 @@ func alertPolicyColumns() []*plugin.Column {
 			Name:        "created_at",
 			Description: "Timestamp at which the policy was created",
 			Type:        proto.ColumnType_TIMESTAMP,
+			Transform:   transform.FromField("CreatedAt").Transform(epochTransform),
 		},
 		{
 			Name:        "updated_at",
 			Description: "Timestamp at which the policy was updated",
 			Type:        proto.ColumnType_TIMESTAMP,
+			Transform:   transform.FromField("UpdatedAt").Transform(epochTransform),
 		},
 	}
 }
