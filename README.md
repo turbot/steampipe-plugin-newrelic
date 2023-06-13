@@ -24,8 +24,12 @@ vi ~/.steampipe/config/newrelic.spc
 or set the following Environment Variables
 
 - `NEW_RELIC_API_KEY` : The API Key to use for the New Relic API.
+- `NEW_RELIC_REGION` : The region to use `us` or `eu`.
 
-# TODO: EXAMPLE QUERY HERE
+Test it:
+```shell
+steampipe query "select * from newrelic_account"
+```
 
 ## Developing
 
