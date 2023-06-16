@@ -108,6 +108,7 @@ func apmApplicationColumns() []*plugin.Column {
 			Name:        "last_reported_at",
 			Description: "Last report received",
 			Type:        proto.ColumnType_TIMESTAMP,
+			Transform:   transform.FromField("LastReportedAt").NullIfZero(),
 		},
 		// Summary
 		{
