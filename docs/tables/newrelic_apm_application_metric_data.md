@@ -10,6 +10,8 @@ The `newrelic_apm_application_metric_data` table can be used to obtain actual AP
 
 ```sql
 select
+  name,
+  values
 from
   newrelic_apm_application_metric_data
 where
