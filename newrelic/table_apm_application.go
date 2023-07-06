@@ -107,7 +107,8 @@ func apmApplicationColumns() []*plugin.Column {
 		{
 			Name:        "last_reported_at",
 			Description: "Last report received",
-			Type:        proto.ColumnType_STRING, // TODO: Get some feedback if this can be converted to timestamp as SDK returns just string
+			Type:        proto.ColumnType_TIMESTAMP,
+			Transform:   transform.FromField("LastReportedAt").NullIfZero(),
 		},
 		// Summary
 		{

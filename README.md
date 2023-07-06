@@ -26,6 +26,7 @@ vi ~/.steampipe/config/newrelic.spc
 or set the following Environment Variables
 
 - `NEW_RELIC_API_KEY` : The API Key to use for the New Relic API.
+- `NEW_RELIC_REGION` : The region to use `us` or `eu`.
 
 ## Developing
 

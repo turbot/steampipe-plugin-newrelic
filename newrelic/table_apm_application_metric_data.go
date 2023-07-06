@@ -49,7 +49,9 @@ func listApmApplicationMetricData(ctx context.Context, d *plugin.QueryData, h *p
 	q := d.EqualsQuals
 	appId := int(q["app_id"].GetInt64Value())
 
-	params := apm.MetricDataParams{}
+	params := apm.MetricDataParams{
+		Names: []string{"*"},
+	}
 	if q["from"] != nil {
 		f := q["from"].GetTimestampValue().AsTime()
 		params.From = &f

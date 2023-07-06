@@ -41,12 +41,14 @@ Configuration can take place in the config file (which takes precedence) `~/.ste
 
 Environment Variables:
 - `NEW_RELIC_API_KEY` for the API key (ex: `854335b43rc4t32rt3c347238v5`)
+- `NEW_RELIC_REGION` for the region you wish to use (ex: `us` or `eu`)
 
 Configuration File:
 
 ```hcl
 connection "newrelic" {
   plugin  = "newrelic"
-  token   = "854335b43rc4t32rt3c347238v5"
+  api_key = "854335b43rc4t32rt3c347238v5"
+  region  = "us"
 }
 ```
