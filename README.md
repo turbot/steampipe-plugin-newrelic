@@ -1,3 +1,5 @@
+![image](https://hub.steampipe.io/images/plugins/turbot/newrelic-social-graphic.png)
+
 # NewRelic plugin for Steampipe
 
 Use SQL to instantly query NewRelic Alerts, Events, Dashboards and more. Open source CLI. No DB required.
