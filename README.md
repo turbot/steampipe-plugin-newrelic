@@ -1,3 +1,5 @@
+![image](https://hub.steampipe.io/images/plugins/turbot/newrelic-social-graphic.png)
+
 # NewRelic plugin for Steampipe
 
 Use SQL to instantly query NewRelic Alerts, Events, Dashboards and more. Open source CLI. No DB required.
@@ -25,11 +27,6 @@ or set the following Environment Variables
 
 - `NEW_RELIC_API_KEY` : The API Key to use for the New Relic API.
 - `NEW_RELIC_REGION` : The region to use `us` or `eu`.
-
-Test it:
-```shell
-steampipe query "select * from newrelic_account"
-```
 
 ## Developing
 
