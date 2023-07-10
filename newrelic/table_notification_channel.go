@@ -31,6 +31,7 @@ func tableNotificationChannel() *plugin.Table {
 func listNotificationChannels(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateData) (interface{}, error) {
 	client, err := connect(ctx, d)
 	if err != nil {
+		plugin.Logger(ctx).Error("newrelic_notification_channel.listNotificationChannels", "connection_error", err)
 		return nil, fmt.Errorf("unable to establish a connection: %v", err)
 	}
 
@@ -44,8 +45,10 @@ func listNotificationChannels(ctx context.Context, d *plugin.QueryData, h *plugi
 	cursor := ""
 
 	for {
+		plugin.Logger(ctx).Debug("newrelic_notification_channel.listNotificationChannels", "account.Id", accountId, "cursor", cursor)
 		channels, err := client.Notifications.GetChannelsWithContext(ctx, accountId, cursor, filters, sorter)
 		if err != nil {
+			plugin.Logger(ctx).Error("newrelic_notification_channel.listNotificationChannels", "query_error", err)
 			return nil, fmt.Errorf("unable to obtain notification channels for aaccount %d: %v", accountId, err)
 		}
 

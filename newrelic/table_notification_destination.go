@@ -31,6 +31,7 @@ func tableNotificationDestination() *plugin.Table {
 func listNotificationDestinations(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateData) (interface{}, error) {
 	client, err := connect(ctx, d)
 	if err != nil {
+		plugin.Logger(ctx).Error("newrelic_notification_destination.listNotificationDestinations", "connection_error", err)
 		return nil, fmt.Errorf("unable to establish a connection: %v", err)
 	}
 
@@ -44,8 +45,10 @@ func listNotificationDestinations(ctx context.Context, d *plugin.QueryData, h *p
 	cursor := ""
 
 	for {
+		plugin.Logger(ctx).Debug("newrelic_notification_destination.listNotificationDestinations", "account.Id", accountId, "cursor", cursor)
 		destinations, err := client.Notifications.GetDestinationsWithContext(ctx, accountId, cursor, filters, sorter)
 		if err != nil {
+			plugin.Logger(ctx).Error("newrelic_notification_destination.listNotificationDestinations", "query_error", err)
 			return nil, fmt.Errorf("unable to obtain notification destinations for account %d: %v", accountId, err)
 		}
 

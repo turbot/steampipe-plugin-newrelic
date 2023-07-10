@@ -43,6 +43,7 @@ func tableApmApplicationMetricData() *plugin.Table {
 func listApmApplicationMetricData(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateData) (interface{}, error) {
 	client, err := connect(ctx, d)
 	if err != nil {
+		plugin.Logger(ctx).Error("newrelic_apm_application_metric_data.listApmApplicationMetricData", "connection_error", err)
 		return nil, fmt.Errorf("unable to establish a connection: %v", err)
 	}
 
@@ -64,8 +65,11 @@ func listApmApplicationMetricData(ctx context.Context, d *plugin.QueryData, h *p
 		params.Names = []string{q["name"].GetStringValue()}
 	}
 
+	plugin.Logger(ctx).Debug("newrelic_apm_application_metric_data.listApmApplicationMetricData", "app.Id", appId,
+		"params.Names", params.Names, "params.From", params.From, "params.To", params.To)
 	metrics, err := client.APM.GetMetricDataWithContext(ctx, appId, params)
 	if err != nil {
+		plugin.Logger(ctx).Error("newrelic_apm_application_metric_data.listApmApplicationMetricData", "query_error", err)
 		return nil, fmt.Errorf("unable to obtain metric data for application %d: %v", appId, err)
 	}
 

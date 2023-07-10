@@ -22,6 +22,7 @@ func tableAccount() *plugin.Table {
 func listAccounts(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateData) (interface{}, error) {
 	client, err := connect(ctx, d)
 	if err != nil {
+		plugin.Logger(ctx).Error("newrelic_account.listAccounts", "connection_error", err)
 		return nil, fmt.Errorf("unable to establish a connection: %v", err)
 	}
 
@@ -29,8 +30,10 @@ func listAccounts(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateDat
 		Scope: &accounts.RegionScopeTypes.GLOBAL,
 	}
 
+	plugin.Logger(ctx).Debug("newrelic_account.listAccounts", "params.Scope", *params.Scope)
 	as, err := client.Accounts.ListAccountsWithContext(ctx, params)
 	if err != nil {
+		plugin.Logger(ctx).Error("newrelic_account.listAccounts", "query_error", err)
 		return nil, fmt.Errorf("unable to obtain accounts: %v", err)
 	}
 

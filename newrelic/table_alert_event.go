@@ -55,6 +55,7 @@ func tableAlertEvent() *plugin.Table {
 func listAlertEvents(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateData) (interface{}, error) {
 	client, err := connect(ctx, d)
 	if err != nil {
+		plugin.Logger(ctx).Error("newrelic_alert_event.listAlertEvents", "connection_error", err)
 		return nil, fmt.Errorf("unable to establish a connection: %v", err)
 	}
 
@@ -84,8 +85,12 @@ func listAlertEvents(ctx context.Context, d *plugin.QueryData, h *plugin.Hydrate
 		params.IncidentID = int(d.EqualsQuals["incident_id"].GetInt64Value())
 	}
 
+	plugin.Logger(ctx).Debug("newrelic_alert_event.listAlertEvents", "params.Product", params.Product,
+		"params.EntityType", params.EntityType, "params.EntityGroupID", params.EntityGroupID, "params.EntityID", params.EntityID,
+		"params.EventType", params.EventType, "params.IncidentID", params.IncidentID)
 	aes, err := client.Alerts.ListAlertEventsWithContext(ctx, &params)
 	if err != nil {
+		plugin.Logger(ctx).Error("newrelic_alert_event.listAlertEvents", "query_error", err)
 		return nil, fmt.Errorf("unable to obtain alert events: %v", err)
 	}
 

@@ -29,14 +29,17 @@ func tableApmApplicationDeployment() *plugin.Table {
 func listApmApplicationDeployments(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateData) (interface{}, error) {
 	client, err := connect(ctx, d)
 	if err != nil {
+		plugin.Logger(ctx).Error("newrelic_apm_application_deployment.listApmApplicationDeployments", "connection_error", err)
 		return nil, fmt.Errorf("unable to establish a connection: %v", err)
 	}
 
 	q := d.EqualsQuals
 	appId := int(q["app_id"].GetInt64Value())
 
+	plugin.Logger(ctx).Debug("newrelic_apm_application_deployment.listApmApplicationDeployments", "app.Id", appId)
 	deployments, err := client.APM.ListDeploymentsWithContext(ctx, appId)
 	if err != nil {
+		plugin.Logger(ctx).Error("newrelic_apm_application_deployment.listApmApplicationDeployments", "query_error", err)
 		return nil, fmt.Errorf("unable to obtain APM application %d deployments: %v", appId, err)
 	}
 

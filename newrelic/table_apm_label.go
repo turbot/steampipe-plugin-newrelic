@@ -26,13 +26,16 @@ func tableApmLabel() *plugin.Table {
 func getApmLabel(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateData) (interface{}, error) {
 	client, err := connect(ctx, d)
 	if err != nil {
+		plugin.Logger(ctx).Error("newrelic_apm_label.getApmLabel", "connection_error", err)
 		return nil, fmt.Errorf("unable to establish a connection: %v", err)
 	}
 
 	key := d.EqualsQuals["key"].GetStringValue()
 
+	plugin.Logger(ctx).Debug("newrelic_apm_label.getApmLabel", "key", key)
 	label, err := client.APM.GetLabelWithContext(ctx, key)
 	if err != nil {
+		plugin.Logger(ctx).Error("newrelic_apm_label.getApmLabel", "query_error", err)
 		return nil, fmt.Errorf("unable to obtain label with key '%s': %v", key, err)
 	}
 
@@ -42,11 +45,14 @@ func getApmLabel(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateData
 func listApmLabels(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateData) (interface{}, error) {
 	client, err := connect(ctx, d)
 	if err != nil {
+		plugin.Logger(ctx).Error("newrelic_apm_label.listApmLabels", "connection_error", err)
 		return nil, fmt.Errorf("unable to establish a connection: %v", err)
 	}
 
+	plugin.Logger(ctx).Debug("newrelic_apm_label.listApmLabels")
 	labels, err := client.APM.ListLabelsWithContext(ctx)
 	if err != nil {
+		plugin.Logger(ctx).Error("newrelic_apm_label.listApmLabels", "query_error", err)
 		return nil, fmt.Errorf("unable to obtain labels: %v", err)
 	}
 

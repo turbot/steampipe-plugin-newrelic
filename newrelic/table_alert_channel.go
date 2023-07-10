@@ -26,13 +26,16 @@ func tableAlertChannel() *plugin.Table {
 func getAlertChannel(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateData) (interface{}, error) {
 	client, err := connect(ctx, d)
 	if err != nil {
+		plugin.Logger(ctx).Error("newrelic_alert_channel.getAlertChannel", "connection_error", err)
 		return nil, fmt.Errorf("unable to establish a connection: %v", err)
 	}
 
 	channelId := int(d.EqualsQuals["id"].GetInt64Value())
 
+	plugin.Logger(ctx).Debug("newrelic_alert_channel.getAlertChannel", "channel.Id", channelId)
 	c, err := client.Alerts.GetChannelWithContext(ctx, channelId)
 	if err != nil {
+		plugin.Logger(ctx).Error("newrelic_alert_channel.getAlertChannel", "query_error", err)
 		return nil, fmt.Errorf("unable to obtain alert channel %d: %v", channelId, err)
 	}
 
@@ -42,11 +45,14 @@ func getAlertChannel(ctx context.Context, d *plugin.QueryData, h *plugin.Hydrate
 func listAlertChannels(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateData) (interface{}, error) {
 	client, err := connect(ctx, d)
 	if err != nil {
+		plugin.Logger(ctx).Error("newrelic_alert_channel.listAlertChannels", "connection_error", err)
 		return nil, fmt.Errorf("unable to establish a connection: %v", err)
 	}
 
+	plugin.Logger(ctx).Debug("newrelic_alert_channel.listAlertChannels")
 	acs, err := client.Alerts.ListChannelsWithContext(ctx)
 	if err != nil {
+		plugin.Logger(ctx).Error("newrelic_alert_channel.listAlertChannels", "query_error", err)
 		return nil, fmt.Errorf("unable to obtain alert channels: %v", err)
 	}
 

@@ -34,13 +34,16 @@ func tableAlertPolicy() *plugin.Table {
 func getAlertPolicy(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateData) (interface{}, error) {
 	client, err := connect(ctx, d)
 	if err != nil {
+		plugin.Logger(ctx).Error("newrelic_alert_policy.getAlertPolicy", "connection_error", err)
 		return nil, fmt.Errorf("unable to establish a connection: %v", err)
 	}
 
 	policyId := int(d.EqualsQuals["id"].GetInt64Value())
 
+	plugin.Logger(ctx).Debug("newrelic_alert_policy.getAlertPolicy", "policy.Id", policyId)
 	p, err := client.Alerts.GetPolicy(policyId)
 	if err != nil {
+		plugin.Logger(ctx).Error("newrelic_alert_policy.getAlertPolicy", "query_error", err)
 		return nil, fmt.Errorf("unable to obtain policy %d: %v", policyId, err)
 	}
 
@@ -50,6 +53,7 @@ func getAlertPolicy(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateD
 func listAlertPolicies(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateData) (interface{}, error) {
 	client, err := connect(ctx, d)
 	if err != nil {
+		plugin.Logger(ctx).Error("newrelic_alert_policy.listAlertPolicies", "connection_error", err)
 		return nil, fmt.Errorf("unable to establish a connection: %v", err)
 	}
 
@@ -59,8 +63,10 @@ func listAlertPolicies(ctx context.Context, d *plugin.QueryData, h *plugin.Hydra
 		params.Name = d.EqualsQuals["name"].GetStringValue()
 	}
 
+	plugin.Logger(ctx).Debug("newrelic_alert_policy.listAlertPolicies", "params.Name", params.Name)
 	ps, err := client.Alerts.ListPoliciesWithContext(ctx, &params)
 	if err != nil {
+		plugin.Logger(ctx).Error("newrelic_alert_policy.listAlertPolicies", "query_error", err)
 		return nil, fmt.Errorf("unable to obtain alert policies: %v", err)
 	}
 

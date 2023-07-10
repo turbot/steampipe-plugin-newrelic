@@ -37,13 +37,16 @@ func tableApmApplication() *plugin.Table {
 func getApmApplication(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateData) (interface{}, error) {
 	client, err := connect(ctx, d)
 	if err != nil {
+		plugin.Logger(ctx).Error("newrelic_apm_application.getApmApplication", "connection_error", err)
 		return nil, fmt.Errorf("unable to establish a connection: %v", err)
 	}
 
 	appId := int(d.EqualsQuals["id"].GetInt64Value())
 
+	plugin.Logger(ctx).Debug("newrelic_apm_application.getApmApplication", "app.Id", appId)
 	app, err := client.APM.GetApplicationWithContext(ctx, appId)
 	if err != nil {
+		plugin.Logger(ctx).Error("newrelic_apm_application.getApmApplication", "query_error", err)
 		return nil, fmt.Errorf("unable to obtain APM application with id %d: %v", appId, err)
 	}
 
@@ -53,6 +56,7 @@ func getApmApplication(ctx context.Context, d *plugin.QueryData, h *plugin.Hydra
 func listApmApplications(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateData) (interface{}, error) {
 	client, err := connect(ctx, d)
 	if err != nil {
+		plugin.Logger(ctx).Error("newrelic_apm_application.listApmApplications", "connection_error", err)
 		return nil, fmt.Errorf("unable to establish a connection: %v", err)
 	}
 
@@ -65,8 +69,10 @@ func listApmApplications(ctx context.Context, d *plugin.QueryData, h *plugin.Hyd
 		params.Language = q["language"].GetStringValue()
 	}
 
+	plugin.Logger(ctx).Debug("newrelic_apm_application.listApmApplications", "params.Name", params.Name, "params.Language", params.Language)
 	apps, err := client.APM.ListApplicationsWithContext(ctx, params)
 	if err != nil {
+		plugin.Logger(ctx).Error("newrelic_apm_application.listApmApplications", "query_error", err)
 		return nil, fmt.Errorf("unable to obtain APM applications: %v", err)
 	}
 
