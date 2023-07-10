@@ -87,28 +87,28 @@ func apmApplicationMetricDataColumns() []*plugin.Column {
 	return []*plugin.Column{
 		{
 			Name:        "app_id",
-			Description: "Unique identifier of the application the metrics belong too",
+			Description: "Unique identifier of the application the metrics belong to.",
 			Type:        proto.ColumnType_INT,
 			Transform:   transform.FromQual("app_id"),
 		},
 		{
 			Name:        "name",
-			Description: "Name of the metric",
+			Description: "Name of the metric.",
 			Type:        proto.ColumnType_STRING,
 		},
 		{
 			Name:        "from",
-			Description: "Timestamp of beginning of the metrics",
+			Description: "Timestamp of beginning of the metrics.",
 			Type:        proto.ColumnType_TIMESTAMP,
 		},
 		{
 			Name:        "to",
-			Description: "Timestamp of ending of the metrics",
+			Description: "Timestamp of ending of the metrics.",
 			Type:        proto.ColumnType_TIMESTAMP,
 		},
 		{
 			Name:        "values",
-			Description: "The actual metric data",
+			Description: "The actual metric data.",
 			Type:        proto.ColumnType_JSON,
 		},
 	}

@@ -61,17 +61,17 @@ func apmApplicationMetricColumns() []*plugin.Column {
 	return []*plugin.Column{
 		{
 			Name:        "name",
-			Description: "Name of the application metric",
+			Description: "Name of the application metric.",
 			Type:        proto.ColumnType_STRING,
 		},
 		{
 			Name:        "values",
-			Description: "An array of the values you can obtain for this metric",
+			Description: "An array of the values you can obtain for this metric.",
 			Type:        proto.ColumnType_JSON,
 		},
 		{
 			Name:        "app_id",
-			Description: "Identifier for the application",
+			Description: "Identifier for the application.",
 			Type:        proto.ColumnType_INT,
 			Transform:   transform.FromQual("app_id"),
 		},

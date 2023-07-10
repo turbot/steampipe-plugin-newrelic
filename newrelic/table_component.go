@@ -82,27 +82,27 @@ func componentColumns() []*plugin.Column {
 	return []*plugin.Column{
 		{
 			Name:        "id",
-			Description: "Unique identifier for the component",
+			Description: "Unique identifier for the component.",
 			Type:        proto.ColumnType_INT,
 		},
 		{
 			Name:        "name",
-			Description: "The name of the component",
+			Description: "The name of the component.",
 			Type:        proto.ColumnType_STRING,
 		},
 		{
 			Name:        "health_status",
-			Description: "The health status of the component",
+			Description: "The health status of the component.",
 			Type:        proto.ColumnType_STRING,
 		},
 		{
 			Name:        "summary_metrics",
-			Description: "An array of metric summaries associated with the component",
+			Description: "An array of metric summaries associated with the component.",
 			Type:        proto.ColumnType_JSON,
 		},
 		{
 			Name:        "plugin_id",
-			Description: "Only populated if passed in as a query parameter",
+			Description: "Only populated if passed in as a query parameter.",
 			Type:        proto.ColumnType_INT,
 			Transform:   transform.FromQual("plugin_id"),
 		},

@@ -61,22 +61,22 @@ func alertChannelColumns() []*plugin.Column {
 	return []*plugin.Column{
 		{
 			Name:        "id",
-			Description: "Unique identifier for the alert channel",
+			Description: "Unique identifier for the alert channel.",
 			Type:        proto.ColumnType_INT,
 		},
 		{
 			Name:        "name",
-			Description: "Name of the alert channel",
+			Description: "Name of the alert channel.",
 			Type:        proto.ColumnType_STRING,
 		},
 		{
 			Name:        "type",
-			Description: "The type of alert channel (slack, email, webhook, etc)",
+			Description: "The type of alert channel (slack, email, webhook, etc).",
 			Type:        proto.ColumnType_STRING,
 		},
 		{
 			Name:        "recipients",
-			Description: "The configured recipients of this alert channel",
+			Description: "The configured recipients of this alert channel.",
 			Type:        proto.ColumnType_STRING,
 			Transform:   transform.FromField("Configuration.Recipients"),
 		},
@@ -84,49 +84,49 @@ func alertChannelColumns() []*plugin.Column {
 		// NOTE: Omitted APIKey as may expose secret info
 		{
 			Name:        "teams",
-			Description: "The configured teams associated with this alert channel",
+			Description: "The configured teams associated with this alert channel.",
 			Type:        proto.ColumnType_STRING,
 			Transform:   transform.FromField("Configuration.Teams"),
 		},
 		{
 			Name:        "tags",
-			Description: "The tags associated with the alert channel",
+			Description: "The tags associated with the alert channel.",
 			Type:        proto.ColumnType_STRING,
 			Transform:   transform.FromField("Configuration.Tags"),
 		},
 		{
 			Name:        "url",
-			Description: "The URL associated with the alert channel",
+			Description: "The URL associated with the alert channel.",
 			Type:        proto.ColumnType_STRING,
 			Transform:   transform.FromField("Configuration.URL"),
 		},
 		{
 			Name:        "channel",
-			Description: "The channel associated with the alert channel",
+			Description: "The channel associated with the alert channel.",
 			Type:        proto.ColumnType_STRING,
 			Transform:   transform.FromField("Configuration.Channel"),
 		},
 		{
 			Name:        "key",
-			Description: "The key associated with the alert channel",
+			Description: "The key associated with the alert channel.",
 			Type:        proto.ColumnType_STRING,
 			Transform:   transform.FromField("Configuration.Key"),
 		},
 		{
 			Name:        "route_key",
-			Description: "The route key associated with the alert channel",
+			Description: "The route key associated with the alert channel.",
 			Type:        proto.ColumnType_STRING,
 			Transform:   transform.FromField("Configuration.RouteKey"),
 		},
 		{
 			Name:        "service_key",
-			Description: "The service key associated with the alert channel",
+			Description: "The service key associated with the alert channel.",
 			Type:        proto.ColumnType_STRING,
 			Transform:   transform.FromField("Configuration.ServiceKey"),
 		},
 		{
 			Name:        "base_url",
-			Description: "The base URL associated with the alert channel",
+			Description: "The base URL associated with the alert channel.",
 			Type:        proto.ColumnType_STRING,
 			Transform:   transform.FromField("Configuration.BaseURL"),
 		},
@@ -134,19 +134,19 @@ func alertChannelColumns() []*plugin.Column {
 		// Omitted AuthPassword as may expose secret info
 		{
 			Name:        "payload_type",
-			Description: "The type of the payload sent to the alert channel",
+			Description: "The type of the payload sent to the alert channel.",
 			Type:        proto.ColumnType_STRING,
 			Transform:   transform.FromField("Configuration.PayloadType"),
 		},
 		{
 			Name:        "region",
-			Description: "The region in which the alert channel is configured",
+			Description: "The region in which the alert channel is configured.",
 			Type:        proto.ColumnType_STRING,
 			Transform:   transform.FromField("Configuration.Region"),
 		},
 		{
 			Name:        "user_id",
-			Description: "The identifier of the user whom created the alert channel",
+			Description: "The identifier of the user whom created the alert channel.",
 			Type:        proto.ColumnType_STRING,
 			Transform:   transform.FromField("Configuration.UserID"),
 		},
@@ -154,7 +154,7 @@ func alertChannelColumns() []*plugin.Column {
 		// Omitted Payload as may contain secret info
 		{
 			Name:        "policies",
-			Description: "An array of policy identifiers that link the alert channel to a policy",
+			Description: "An array of policy identifiers that link the alert channel to a policy.",
 			Type:        proto.ColumnType_JSON,
 			Transform:   transform.FromField("Links.PolicyIDs"),
 		},

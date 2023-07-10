@@ -51,38 +51,38 @@ func apmApplicationDeploymentColumns() []*plugin.Column {
 	return []*plugin.Column{
 		{
 			Name:        "id",
-			Description: "Unique identifier of the deployment",
+			Description: "Unique identifier of the deployment.",
 			Type:        proto.ColumnType_INT,
 		},
 		{
 			Name:        "description",
-			Description: "The description of the deployment",
+			Description: "The description of the deployment.",
 			Type:        proto.ColumnType_STRING,
 		},
 		{
 			Name:        "revision",
-			Description: "The revision of the deployment",
+			Description: "The revision of the deployment.",
 			Type:        proto.ColumnType_STRING,
 		},
 		{
 			Name:        "changelog",
-			Description: "The changelog entry associated with the deployment",
+			Description: "The changelog entry associated with the deployment.",
 			Type:        proto.ColumnType_STRING,
 		},
 		{
 			Name:        "user",
-			Description: "The user associated with the deployment",
+			Description: "The user associated with the deployment.",
 			Type:        proto.ColumnType_STRING,
 		},
 		{
 			Name:        "timestamp",
-			Description: "The timestamp of when the deployment was deployed",
-			Type:        proto.ColumnType_STRING, // TODO: Obtain feedback on if this can be converted to a timestamp, the SDK returns a string.
+			Description: "The timestamp of when the deployment was deployed.",
+			Type:        proto.ColumnType_TIMESTAMP,
 		},
 		// Links
 		{
 			Name:        "app_id",
-			Description: "The identifier of the application the deployment is linked to",
+			Description: "The identifier of the application the deployment is linked to.",
 			Type:        proto.ColumnType_INT,
 			Transform:   transform.FromField("Links.ApplicationID"),
 		},
