@@ -100,52 +100,52 @@ func alertEventColumns() []*plugin.Column {
 	return []*plugin.Column{
 		{
 			Name:        "id",
-			Description: "Unique identifier for the alert event",
+			Description: "Unique identifier for the alert event.",
 			Type:        proto.ColumnType_INT,
 		},
 		{
 			Name:        "event_type",
-			Description: "The type of the alert event",
+			Description: "The type of the alert event.",
 			Type:        proto.ColumnType_STRING,
 		},
 		{
 			Name:        "product",
-			Description: "The name of the product the alert event relates to",
+			Description: "The name of the product the alert event relates to.",
 			Type:        proto.ColumnType_STRING,
 		},
 		{
 			Name:        "description",
-			Description: "Description of the alert event",
+			Description: "Description of the alert event.",
 			Type:        proto.ColumnType_STRING,
 		},
 		{
 			Name:        "entity_id",
-			Description: "Identifier of the entity the alert event relates to",
+			Description: "Identifier of the entity the alert event relates to.",
 			Type:        proto.ColumnType_INT,
 		},
 		{
 			Name:        "entity_type",
-			Description: "The type of the entity the alert event relates to",
+			Description: "The type of the entity the alert event relates to.",
 			Type:        proto.ColumnType_STRING,
 		},
 		{
 			Name:        "entity_group_id",
-			Description: "Identifier of the group the entity associated with this alert event",
+			Description: "Identifier of the group the entity associated with this alert event.",
 			Type:        proto.ColumnType_INT,
 		},
 		{
 			Name:        "priority",
-			Description: "Priority of the alert event",
+			Description: "Priority of the alert event.",
 			Type:        proto.ColumnType_STRING,
 		},
 		{
 			Name:        "incident_id",
-			Description: "Identifier of the incident for which the alert event was raised",
+			Description: "Identifier of the incident for which the alert event was raised.",
 			Type:        proto.ColumnType_INT,
 		},
 		{
 			Name:        "timestamp",
-			Description: "Timestamp when alert event was raised",
+			Description: "Timestamp when alert event was raised.",
 			Type:        proto.ColumnType_TIMESTAMP,
 			Transform:   transform.FromField("Timestamp").Transform(epochTransform),
 		},

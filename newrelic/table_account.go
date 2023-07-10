@@ -45,17 +45,17 @@ func accountColumns() []*plugin.Column {
 	return []*plugin.Column{
 		{
 			Name:        "id",
-			Description: "Unique identifier for the account",
+			Description: "Unique identifier for the account.",
 			Type:        proto.ColumnType_INT,
 		},
 		{
 			Name:        "name",
-			Description: "Name of the account",
+			Description: "Name of the account.",
 			Type:        proto.ColumnType_STRING,
 		},
 		{
 			Name:        "reporting_event_types",
-			Description: "An array of event types that are currently reporting in the account",
+			Description: "An array of event types that are currently reporting in the account.",
 			Type:        proto.ColumnType_JSON,
 		},
 	}

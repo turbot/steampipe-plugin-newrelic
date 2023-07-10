@@ -75,28 +75,28 @@ func alertPolicyColumns() []*plugin.Column {
 	return []*plugin.Column{
 		{
 			Name:        "id",
-			Description: "Unique identifier for the alert policy",
+			Description: "Unique identifier for the alert policy.",
 			Type:        proto.ColumnType_INT,
 		},
 		{
 			Name:        "name",
-			Description: "Name of the policy",
+			Description: "Name of the policy.",
 			Type:        proto.ColumnType_STRING,
 		},
 		{
 			Name:        "incident_preference",
-			Description: "The preference type of the incident (PER_POLICY, PER_CONDITION, PER_CONDITION_AND_TARGET)",
+			Description: "The preference type of the incident (PER_POLICY, PER_CONDITION, PER_CONDITION_AND_TARGET).",
 			Type:        proto.ColumnType_STRING,
 		},
 		{
 			Name:        "created_at",
-			Description: "Timestamp at which the policy was created",
+			Description: "Timestamp at which the policy was created.",
 			Type:        proto.ColumnType_TIMESTAMP,
 			Transform:   transform.FromField("CreatedAt").Transform(epochTransform),
 		},
 		{
 			Name:        "updated_at",
-			Description: "Timestamp at which the policy was updated",
+			Description: "Timestamp at which the policy was updated.",
 			Type:        proto.ColumnType_TIMESTAMP,
 			Transform:   transform.FromField("UpdatedAt").Transform(epochTransform),
 		},

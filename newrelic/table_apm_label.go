@@ -61,29 +61,29 @@ func apmLabelColumns() []*plugin.Column {
 	return []*plugin.Column{
 		{
 			Name:        "key",
-			Description: "The identifier for the label",
+			Description: "The identifier for the label.",
 			Type:        proto.ColumnType_STRING,
 		},
 		{
 			Name:        "name",
-			Description: "The name of the label",
+			Description: "The name of the label.",
 			Type:        proto.ColumnType_STRING,
 		},
 		{
 			Name:        "category",
-			Description: "The category the label belongs to",
+			Description: "The category the label belongs to.",
 			Type:        proto.ColumnType_STRING,
 		},
 		// Links
 		{
 			Name:        "applications",
-			Description: "An array of application identifiers to which the label is applied",
+			Description: "An array of application identifiers to which the label is applied.",
 			Type:        proto.ColumnType_JSON,
 			Transform:   transform.FromField("Links.Applications"),
 		},
 		{
 			Name:        "servers",
-			Description: "An array of server identifiers to which the label is applied",
+			Description: "An array of server identifiers to which the label is applied.",
 			Type:        proto.ColumnType_JSON,
 			Transform:   transform.FromField("Links.Servers"),
 		},

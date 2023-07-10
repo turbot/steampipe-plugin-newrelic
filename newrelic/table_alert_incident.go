@@ -41,35 +41,35 @@ func alertIncidentColumns() []*plugin.Column {
 	return []*plugin.Column{
 		{
 			Name:        "id",
-			Description: "Unique identifier for the alert incident",
+			Description: "Unique identifier for the alert incident.",
 			Type:        proto.ColumnType_INT,
 		},
 		{
 			Name:        "opened_at",
-			Description: "Timestamp of when the incident was created",
+			Description: "Timestamp of when the incident was created.",
 			Type:        proto.ColumnType_TIMESTAMP,
 			Transform:   transform.FromField("OpenedAt").Transform(epochTransform),
 		},
 		{
 			Name:        "closed_at",
-			Description: "Timestamp of when the incident was closed",
+			Description: "Timestamp of when the incident was closed.",
 			Type:        proto.ColumnType_TIMESTAMP,
 			Transform:   transform.FromField("CreatedAt").Transform(epochTransform),
 		},
 		{
 			Name:        "incident_preference",
-			Description: "The preference of the incident",
+			Description: "The preference of the incident.",
 			Type:        proto.ColumnType_STRING,
 		},
 		{
 			Name:        "policy_id",
-			Description: "Identifier of the policy the incident is associated with",
+			Description: "Identifier of the policy the incident is associated with.",
 			Type:        proto.ColumnType_INT,
 			Transform:   transform.FromField("Links.PolicyID"),
 		},
 		{
 			Name:        "violations",
-			Description: "An array of violation identifiers associated with the incident",
+			Description: "An array of violation identifiers associated with the incident.",
 			Type:        proto.ColumnType_JSON,
 			Transform:   transform.FromField("Links.Violations"),
 		},

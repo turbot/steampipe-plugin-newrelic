@@ -50,7 +50,7 @@ func connect(_ context.Context, d *plugin.QueryData) (*newrelic.NewRelic, error)
 	}
 
 	if apiKey == "" {
-		return nil, errors.New("the 'api_key' must be set in the connection configuration file or 'NEW_RELIC_API_KEY' env var must be set. Please set and then restart Steampipe")
+		return nil, errors.New("'api_key' must be set in the connection configuration file or 'NEW_RELIC_API_KEY' env var must be set. Please set and then restart Steampipe")
 	}
 
 	if region == "" {
