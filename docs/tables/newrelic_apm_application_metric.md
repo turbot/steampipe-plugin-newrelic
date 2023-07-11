@@ -17,3 +17,18 @@ from
 where
   app_id = 45;
 ```
+
+### List all available cpu based metrics for all applications
+
+```sql
+select
+  a.name as app,
+  m.name as metric,
+  m.values as values
+from
+  newrelic_apm_application_metric m,
+  newrelic_apm_application a 
+where
+  m.app_id = a.id
+and m.name ilike '%cpu%';
+```

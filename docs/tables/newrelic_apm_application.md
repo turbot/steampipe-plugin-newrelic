@@ -52,3 +52,26 @@ from
 where
   language = 'java';
 ```
+
+### List applications using a specific named policy
+
+```sql
+select
+  id,
+  name,
+  language,
+  health_status,
+  host_count,
+  instance_count,
+from
+  newrelic_apm_application
+where
+  alert_policy_id = (
+    select 
+      id 
+    from 
+      newrelic_alert_policy 
+    where 
+      name = 'test'
+  );
+```

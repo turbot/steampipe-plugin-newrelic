@@ -27,3 +27,16 @@ select
 from
   newrelic_plugin;
 ```
+
+### List private plugins
+
+```sql
+select
+  name,
+  description,
+  short_name
+from
+  newrelic_plugin
+where
+  is_public = false;
+```

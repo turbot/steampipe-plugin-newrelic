@@ -4,7 +4,7 @@ The `newrelic_alert_event` table can be used to obtain information on alert even
 
 ## Examples
 
-### List all alert events you have access to (this may take a long time, using a filtered approach is preferred)
+### List alert events for open incidents
 
 ```sql
 select
@@ -19,7 +19,16 @@ select
   priority,
   incident_id
 from
-  newrelic_alert_event;
+  newrelic_alert_event
+where
+  incident_id in (
+    select
+      id
+    from
+      newrelic_alert_incident
+    where
+      closed_at is null
+  );
 ```
 
 ### List alert events for a specific product
