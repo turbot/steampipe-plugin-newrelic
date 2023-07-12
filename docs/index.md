@@ -6,7 +6,7 @@ brand_color: "#1CE783"
 display_name: "New Relic"
 short_name: "newrelic"
 description: "Steampipe plugin for querying New Relic Alerts, Events and other resources."
-og_description: Query NewRelic with SQL! Open source CLI. No DB required.
+og_description: Query New Relic with SQL! Open source CLI. No DB required.
 og_image: "/images/plugins/turbot/newrelic-social-graphic.png"
 ---
 
