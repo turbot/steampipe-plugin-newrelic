@@ -3,6 +3,7 @@ package newrelic
 import (
 	"context"
 	"fmt"
+
 	"github.com/newrelic/newrelic-client-go/v2/pkg/ai"
 	"github.com/newrelic/newrelic-client-go/v2/pkg/notifications"
 	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
@@ -13,7 +14,7 @@ import (
 func tableNotificationDestination() *plugin.Table {
 	return &plugin.Table{
 		Name:        "newrelic_notification_destination",
-		Description: "Obtain information about notification destinations for a specific NewRelic account",
+		Description: "Obtain information about notification destinations for a specific New Relic account",
 		List: &plugin.ListConfig{
 			Hydrate: listNotificationDestinations,
 			KeyColumns: []*plugin.KeyColumn{

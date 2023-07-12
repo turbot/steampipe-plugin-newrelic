@@ -3,6 +3,7 @@ package newrelic
 import (
 	"context"
 	"fmt"
+
 	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
 	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
 	"github.com/turbot/steampipe-plugin-sdk/v5/plugin/transform"
@@ -11,7 +12,7 @@ import (
 func tableAlertChannel() *plugin.Table {
 	return &plugin.Table{
 		Name:        "newrelic_alert_channel",
-		Description: "Obtain alert channels for a given NewRelic account",
+		Description: "Obtain alert channels for a given New Relic account",
 		List: &plugin.ListConfig{
 			Hydrate: listAlertChannels,
 		},

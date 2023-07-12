@@ -3,6 +3,7 @@ package newrelic
 import (
 	"context"
 	"fmt"
+
 	"github.com/newrelic/newrelic-client-go/v2/pkg/alerts"
 	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
 	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
@@ -12,7 +13,7 @@ import (
 func tableAlertPolicy() *plugin.Table {
 	return &plugin.Table{
 		Name:        "newrelic_alert_policy",
-		Description: "Obtain alert policies from the given NewRelic account",
+		Description: "Obtain alert policies from the given New Relic account",
 		List: &plugin.ListConfig{
 			KeyColumns: []*plugin.KeyColumn{
 				{

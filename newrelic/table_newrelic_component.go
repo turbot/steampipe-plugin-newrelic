@@ -3,6 +3,7 @@ package newrelic
 import (
 	"context"
 	"fmt"
+
 	"github.com/newrelic/newrelic-client-go/v2/pkg/plugins"
 	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
 	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
@@ -12,7 +13,7 @@ import (
 func tableComponent() *plugin.Table {
 	return &plugin.Table{
 		Name:        "newrelic_component",
-		Description: "Obtain information about components in your NewRelic account",
+		Description: "Obtain information about components in your New Relic account",
 		List: &plugin.ListConfig{
 			Hydrate: listComponents,
 			KeyColumns: []*plugin.KeyColumn{

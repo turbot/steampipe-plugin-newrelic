@@ -3,17 +3,18 @@ package newrelic
 import (
 	"context"
 	"fmt"
+	"strings"
+
 	"github.com/newrelic/newrelic-client-go/v2/pkg/alerts"
 	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
 	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
 	"github.com/turbot/steampipe-plugin-sdk/v5/plugin/transform"
-	"strings"
 )
 
 func tableAlertEvent() *plugin.Table {
 	return &plugin.Table{
 		Name:        "newrelic_alert_event",
-		Description: "Obtain alert events from the given NewRelic account",
+		Description: "Obtain alert events from the given New Relic account",
 		List: &plugin.ListConfig{
 			KeyColumns: []*plugin.KeyColumn{
 				{

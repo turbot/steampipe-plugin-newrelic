@@ -36,7 +36,7 @@ func GetConfig(connection *plugin.Connection) PluginConfig {
 	return config
 }
 
-func connect(_ context.Context, d *plugin.QueryData) (*newrelic.NewRelic, error) {
+func connect(_ context.Context, d *plugin.QueryData) (*newrelic.New Relic, error) {
 	apiKey := os.Getenv("NEW_RELIC_API_KEY")
 	region := os.Getenv("NEW_RELIC_REGION")
 

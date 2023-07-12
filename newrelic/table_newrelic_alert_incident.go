@@ -3,6 +3,7 @@ package newrelic
 import (
 	"context"
 	"fmt"
+
 	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
 	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
 	"github.com/turbot/steampipe-plugin-sdk/v5/plugin/transform"
@@ -11,7 +12,7 @@ import (
 func tableAlertIncident() *plugin.Table {
 	return &plugin.Table{
 		Name:        "newrelic_alert_incident",
-		Description: "Obtain alert incidents from the given NewRelic account",
+		Description: "Obtain alert incidents from the given New Relic account",
 		List: &plugin.ListConfig{
 			Hydrate: listAlertIncidents,
 		},

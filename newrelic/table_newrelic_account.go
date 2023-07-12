@@ -3,6 +3,7 @@ package newrelic
 import (
 	"context"
 	"fmt"
+
 	"github.com/newrelic/newrelic-client-go/v2/pkg/accounts"
 	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
 	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
@@ -11,7 +12,7 @@ import (
 func tableAccount() *plugin.Table {
 	return &plugin.Table{
 		Name:        "newrelic_account",
-		Description: "Obtain accounts visible to your user from NewRelic.",
+		Description: "Obtain accounts visible to your user from New Relic.",
 		List: &plugin.ListConfig{
 			Hydrate: listAccounts,
 		},

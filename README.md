@@ -1,8 +1,8 @@
 ![image](https://hub.steampipe.io/images/plugins/turbot/newrelic-social-graphic.png)
 
-# NewRelic plugin for Steampipe
+# New Relic plugin for Steampipe
 
-Use SQL to instantly query NewRelic Alerts, Events, Dashboards and more. Open source CLI. No DB required.
+Use SQL to instantly query New Relic Alerts, Events, Dashboards and more. Open source CLI. No DB required.
 
 - **[Get started ->](https://hub.steampipe.io/plugins/turbot/newrelic)**
 - Documentation: [Table definitions & examples](https://hub.steampipe.io/plugins/turbot/newrelic/tables)
@@ -13,7 +13,7 @@ Use SQL to instantly query NewRelic Alerts, Events, Dashboards and more. Open so
 
 ### Install
 
-Download and install the latest NewRelic plugin:
+Download and install the latest New Relic plugin:
 
 ```shell
 steampipe plugin install newrelic
@@ -46,7 +46,7 @@ Run steampipe:
 steampipe query
 ```
 
-List APM Applications on your NewRelic account:
+List APM Applications on your New Relic account:
 
 ```sql
 select
@@ -113,4 +113,4 @@ Please see the [contribution guidelines](https://github.com/turbot/steampipe/blo
 `help wanted` issues:
 
 - [Steampipe](https://github.com/turbot/steampipe/labels/help%20wanted)
-- [NewRelic Plugin](https://github.com/turbot/steampipe-plugin-newrelic/labels/help%20wanted)
+- [New Relic Plugin](https://github.com/turbot/steampipe-plugin-newrelic/labels/help%20wanted)

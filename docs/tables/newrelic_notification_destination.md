@@ -1,6 +1,6 @@
 # Table: newrelic_notification_destination
 
-The `newrelic_notification_destination` table can be used to obtain information about destinations for notifications for a specific NewRelic account.
+The `newrelic_notification_destination` table can be used to obtain information about destinations for notifications for a specific New Relic account.
 
 **You must specify `account_id` in the where or join clause.**
 

@@ -1,6 +1,6 @@
 # Table: newrelic_component
 
-The `newrelic_component` table can be used to obtain information on components monitored in NewRelic.
+The `newrelic_component` table can be used to obtain information on components monitored in New Relic.
 
 ## Examples
 
