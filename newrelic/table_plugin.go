@@ -27,14 +27,17 @@ func tablePlugin() *plugin.Table {
 func getPlugins(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateData) (interface{}, error) {
 	client, err := connect(ctx, d)
 	if err != nil {
+		plugin.Logger(ctx).Error("newrelic_plugin.getPlugins", "connection_error", err)
 		return nil, fmt.Errorf("unable to establish a connection: %v", err)
 	}
 
 	pluginId := int(d.EqualsQuals["id"].GetInt64Value())
 	params := plugins.GetPluginParams{Detailed: true}
 
+	plugin.Logger(ctx).Debug("newrelic_plugin.getPlugins", "plugin.Id", pluginId, "params.Detailed", params.Detailed)
 	p, err := client.Plugins.GetPlugin(pluginId, &params)
 	if err != nil {
+		plugin.Logger(ctx).Error("newrelic_plugin.getPlugins", "query_error", err)
 		return nil, fmt.Errorf("unable to obtain plugin %d: %v", pluginId, err)
 	}
 
@@ -44,6 +47,7 @@ func getPlugins(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateData)
 func listPlugins(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateData) (interface{}, error) {
 	client, err := connect(ctx, d)
 	if err != nil {
+		plugin.Logger(ctx).Error("newrelic_plugin.listPlugins", "connection_error", err)
 		return nil, fmt.Errorf("unable to establish a connection: %v", err)
 	}
 
@@ -51,8 +55,10 @@ func listPlugins(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateData
 		Detailed: true,
 	}
 
+	plugin.Logger(ctx).Debug("newrelic_plugin.listPlugins", "params.Detailed", params.Detailed)
 	ps, err := client.Plugins.ListPlugins(&params)
 	if err != nil {
+		plugin.Logger(ctx).Error("newrelic_plugin.listPlugins", "query_error", err)
 		return nil, fmt.Errorf("unable to obtain plugins: %v", err)
 	}
 

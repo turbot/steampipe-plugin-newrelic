@@ -22,11 +22,14 @@ func tableAlertIncident() *plugin.Table {
 func listAlertIncidents(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateData) (interface{}, error) {
 	client, err := connect(ctx, d)
 	if err != nil {
+		plugin.Logger(ctx).Error("newrelic_alert_incident.listAlertIncidents", "connection_error", err)
 		return nil, fmt.Errorf("unable to establish a connection: %v", err)
 	}
 
+	plugin.Logger(ctx).Debug("newrelic_alert_incident.listAlertIncidents", "onlyOpen", false, "excludeViolations", false)
 	ais, err := client.Alerts.ListIncidentsWithContext(ctx, false, false)
 	if err != nil {
+		plugin.Logger(ctx).Error("newrelic_alert_incident.listAlertIncidents", "query_error", err)
 		return nil, fmt.Errorf("unable to obtain alert incidents: %v", err)
 	}
 

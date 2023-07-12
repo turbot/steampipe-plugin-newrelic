@@ -6,7 +6,7 @@ The `newrelic_apm_application_instance` table can use used to obtain information
 
 ## Examples
 
-### List all application instances monitored by apm
+### List all application instances monitored by apm for a specific application
 
 ```sql
 select
@@ -35,4 +35,19 @@ from
   newrelic_apm_application_instance
 where
   app_id = 45;
+```
+
+### Obtain information on instances of all applications
+
+```sql
+select
+  i.application_name,
+  sum(i.instance_count) as instances
+from 
+  newrelic_apm_application_instance i,
+  newrelic_apm_application a
+where
+  i.app_id = a.id
+group by
+  i.application_name;
 ```

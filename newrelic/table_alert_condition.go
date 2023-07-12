@@ -38,14 +38,17 @@ func tableAlertCondition() *plugin.Table {
 func getAlertCondition(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateData) (interface{}, error) {
 	client, err := connect(ctx, d)
 	if err != nil {
+		plugin.Logger(ctx).Error("newrelic_alert_condition.getAlertCondition", "connection_error", err)
 		return nil, fmt.Errorf("unable to establish a connection: %v", err)
 	}
 
 	conditionId := int(d.EqualsQuals["id"].GetInt64Value())
 	policyId := int(d.EqualsQuals["policy_id"].GetInt64Value())
 
+	plugin.Logger(ctx).Debug("newrelic_alert_condition.getAlertCondition", "condition.Id", conditionId, "policy.Id", policyId)
 	c, err := client.Alerts.GetConditionWithContext(ctx, policyId, conditionId)
 	if err != nil {
+		plugin.Logger(ctx).Error("newrelic_alert_condition.getAlertCondition", "query_error", err)
 		return nil, fmt.Errorf("unable to obtain alert condition %d for policy %d: %v", conditionId, policyId, err)
 	}
 
@@ -55,13 +58,16 @@ func getAlertCondition(ctx context.Context, d *plugin.QueryData, h *plugin.Hydra
 func listAlertConditions(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateData) (interface{}, error) {
 	client, err := connect(ctx, d)
 	if err != nil {
+		plugin.Logger(ctx).Error("newrelic_alert_condition.listAlertConditions", "connection_error", err)
 		return nil, fmt.Errorf("unable to establish a connection: %v", err)
 	}
 
 	policyId := int(d.EqualsQuals["policy_id"].GetInt64Value())
 
+	plugin.Logger(ctx).Debug("newrelic_alert_condition.listAlertConditions", "policy.Id", policyId)
 	acs, err := client.Alerts.ListConditionsWithContext(ctx, policyId)
 	if err != nil {
+		plugin.Logger(ctx).Error("newrelic_alert_condition.listAlertConditions", "query_error", err)
 		return nil, fmt.Errorf("unable to obtain alert conditions for policy %d: %v", policyId, err)
 	}
 

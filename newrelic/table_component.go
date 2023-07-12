@@ -37,13 +37,16 @@ func tableComponent() *plugin.Table {
 func getComponent(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateData) (interface{}, error) {
 	client, err := connect(ctx, d)
 	if err != nil {
+		plugin.Logger(ctx).Error("newrelic_component.getComponent", "connection_error", err)
 		return nil, fmt.Errorf("unable to establish a connection: %v", err)
 	}
 
 	componentId := int(d.EqualsQuals["id"].GetInt64Value())
 
+	plugin.Logger(ctx).Debug("newrelic_component.getComponent", "component.Id", componentId)
 	c, err := client.Plugins.GetComponent(componentId)
 	if err != nil {
+		plugin.Logger(ctx).Error("newrelic_component.getComponent", "query_error", err)
 		return nil, fmt.Errorf("unable to obtain component %d: %v", componentId, err)
 	}
 
@@ -53,6 +56,7 @@ func getComponent(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateDat
 func listComponents(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateData) (interface{}, error) {
 	client, err := connect(ctx, d)
 	if err != nil {
+		plugin.Logger(ctx).Error("newrelic_component.listComponents", "connection_error", err)
 		return nil, fmt.Errorf("unable to establish a connection: %v", err)
 	}
 
@@ -66,8 +70,10 @@ func listComponents(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateD
 		params.Name = q["name"].GetStringValue()
 	}
 
+	plugin.Logger(ctx).Debug("newrelic_component.listComponents", "params.Name", params.Name, "params.PluginId", params.PluginID)
 	cs, err := client.Plugins.ListComponents(&params)
 	if err != nil {
+		plugin.Logger(ctx).Error("newrelic_component.listComponents", "query_error", err)
 		return nil, fmt.Errorf("unable to obtain components: %v", err)
 	}
 

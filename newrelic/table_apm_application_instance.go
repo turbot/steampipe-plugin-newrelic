@@ -34,6 +34,7 @@ func tableApmApplicationInstance() *plugin.Table {
 func listApmApplicationInstances(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateData) (interface{}, error) {
 	client, err := connect(ctx, d)
 	if err != nil {
+		plugin.Logger(ctx).Error("newrelic_apm_application_instance.listApmApplicationInstances", "connection_error", err)
 		return nil, fmt.Errorf("unable to establish a connection: %v", err)
 	}
 
@@ -42,8 +43,10 @@ func listApmApplicationInstances(ctx context.Context, d *plugin.QueryData, h *pl
 
 	if q["id"] != nil {
 		id := int(q["id"].GetInt64Value())
+		plugin.Logger(ctx).Debug("newrelic_apm_application_instance.listApmApplicationInstances", "app.Id", appId, "Id", id)
 		i, err := client.APM.GetApplicationInstanceWithContext(ctx, appId, id)
 		if err != nil {
+			plugin.Logger(ctx).Error("newrelic_apm_application_instance.listApmApplicationInstances", "query_error", err)
 			return nil, fmt.Errorf("unable to obtain APM application %d instance %d: %v", appId, id, err)
 		}
 
@@ -53,8 +56,10 @@ func listApmApplicationInstances(ctx context.Context, d *plugin.QueryData, h *pl
 
 	params := &apm.ListApplicationInstancesParams{}
 
+	plugin.Logger(ctx).Debug("newrelic_apm_application_instance.listApmApplicationInstances", "app.Id", appId)
 	instances, err := client.APM.ListApplicationInstancesWithContext(ctx, appId, params)
 	if err != nil {
+		plugin.Logger(ctx).Error("newrelic_apm_application_instance.listApmApplicationInstances", "query_error", err)
 		return nil, fmt.Errorf("unable to obtain APM application %d instances: %v", appId, err)
 	}
 

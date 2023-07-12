@@ -11,22 +11,61 @@ Use SQL to instantly query NewRelic Alerts, Events, Dashboards and more. Open so
 
 ## Quick start
 
-Install the plugin with [Steampipe](https://steampipe.io):
+### Install
+
+Download and install the latest NewRelic plugin:
 
 ```shell
 steampipe plugin install newrelic
 ```
 
-Setup the configuration:
+Configure your [credentials](https://hub.steampipe.io/plugins/turbot/newrelic#credentials) and [config file](https://hub.steampipe.io/plugins/turbot/newrelic#configuration).
 
-```shell
-vi ~/.steampipe/config/newrelic.spc
+Configure your account details in `~/.steampipe/config/newrelic.spc`:
+
+```hcl
+connection "newrelic" {
+  plugin = "newrelic"
+
+  # Authentication information
+  api_key = "NRAK-XX0X0XX00XXXX0000XXXXXXXXX0X"
+  region = "us"
+}
 ```
 
-or set the following Environment Variables
+or through environment variables:
 
-- `NEW_RELIC_API_KEY` : The API Key to use for the New Relic API.
-- `NEW_RELIC_REGION` : The region to use `us` or `eu`.
+```shell
+export NEW_RELIC_API_KEY=NRAK-XX0X0XX00XXXX0000XXXXXXXXX0X
+export NEW_RELIC_REGION=us
+```
+
+Run steampipe:
+
+```shell
+steampipe query
+```
+
+List APM Applications on your NewRelic account:
+
+```sql
+select
+  id,
+  name,
+  error_rate,
+  health_status,
+  response_time
+from
+  newrelic_apm_application;
+```
+
+```
++-----------+------+------------+---------------+---------------+
+| id        | name | error_rate | health_status | response_time |
++-----------+------+------------+---------------+---------------+
+| 511153982 | test | 0          | gray          | 0             |
++-----------+------+------------+---------------+---------------+
+```
 
 ## Developing
 
@@ -69,7 +108,7 @@ Further reading:
 
 ## Contributing
 
-Please see the [contribution guidelines](https://github.com/turbot/steampipe/blob/main/CONTRIBUTING.md) and our [code of conduct](https://github.com/turbot/steampipe/blob/main/CODE_OF_CONDUCT.md). All contributions are subject to the [Apache 2.0 open source license](https://github.com/turbot/steampipe-plugin-pagerduty/blob/main/LICENSE).
+Please see the [contribution guidelines](https://github.com/turbot/steampipe/blob/main/CONTRIBUTING.md) and our [code of conduct](https://github.com/turbot/steampipe/blob/main/CODE_OF_CONDUCT.md). All contributions are subject to the [Apache 2.0 open source license](https://github.com/turbot/steampipe-plugin-newrelic/blob/main/LICENSE).
 
 `help wanted` issues:
 
