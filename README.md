@@ -27,7 +27,7 @@ Configure your account details in `~/.steampipe/config/newrelic.spc`:
 connection "newrelic" {
   plugin = "newrelic"
 
-  # NewRelic API Key. Required.
+  # Authentication information
   api_key = "NRAK-XX0X0XX00XXXX0000XXXXXXXXX0X"
   region = "us"
 }
