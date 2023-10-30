@@ -3,7 +3,7 @@ module steampipe-plugin-newrelic
 go 1.21
 
 require (
-	github.com/newrelic/newrelic-client-go/v2 v2.19.1
+	github.com/newrelic/newrelic-client-go/v2 v2.22.0
 	github.com/turbot/steampipe-plugin-sdk/v5 v5.6.2
 )
 
