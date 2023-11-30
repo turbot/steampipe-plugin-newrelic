@@ -1,12 +1,20 @@
-# Table: newrelic_apm_application_instance
+---
+title: "Steampipe Table: newrelic_apm_application_instance - Query New Relic APM Application Instances using SQL"
+description: "Allows users to query New Relic APM Application Instances, specifically providing metrics about individual instances of applications monitored by New Relic APM."
+---
 
-The `newrelic_apm_application_instance` table can use used to obtain information about instances of the applications covered by APM.
+# Table: newrelic_apm_application_instance - Query New Relic APM Application Instances using SQL
 
-**You must specify `app_id` in there where or join clause.**
+New Relic's Application Performance Monitoring (APM) is a software that provides real-time monitoring and detailed performance analytics of software applications. It helps in identifying performance issues, understanding dependencies, and improving software performance. An Application Instance in New Relic APM represents a single running instance of your application, providing in-depth performance metrics for that instance.
+
+## Table Usage Guide
+
+The `newrelic_apm_application_instance` table provides insights into individual instances of applications monitored by New Relic APM. As a DevOps engineer or application developer, you can use this table to explore detailed metrics about each application instance, including throughput, response time, and error rate. Utilize it to identify performance bottlenecks, understand dependencies, and improve the overall performance of your applications.
 
 ## Examples
 
 ### List all application instances monitored by apm for a specific application
+Determine the performance and health status of a specific application by analyzing its response time, error rate, and other key metrics. This can aid in identifying any potential issues or bottlenecks that may be affecting the application's overall performance.
 
 ```sql
 select
@@ -38,6 +46,7 @@ where
 ```
 
 ### Obtain information on instances of all applications
+Explore which applications have the most instances to understand resource allocation and usage patterns. This can help in optimizing resource distribution and identifying potential bottlenecks.
 
 ```sql
 select
