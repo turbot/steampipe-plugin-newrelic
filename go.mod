@@ -1,4 +1,4 @@
-module steampipe-plugin-newrelic
+module github.com/turbot/steampipe-plugin-newrelic
 
 go 1.21
 
