@@ -11,6 +11,9 @@ New Relic's Application Performance Monitoring (APM) is a software that provides
 
 The `newrelic_apm_application_instance` table provides insights into individual instances of applications monitored by New Relic APM. As a DevOps engineer or application developer, you can use this table to explore detailed metrics about each application instance, including throughput, response time, and error rate. Utilize it to identify performance bottlenecks, understand dependencies, and improve the overall performance of your applications.
 
+**Important Notes**
+- You must specify the `app_id` in the `where` clause to query this table.
+
 ## Examples
 
 ### List all application instances monitored by apm for a specific application
@@ -52,7 +55,7 @@ Explore which applications have the most instances to understand resource alloca
 select
   i.application_name,
   sum(i.instance_count) as instances
-from 
+from
   newrelic_apm_application_instance i,
   newrelic_apm_application a
 where

@@ -11,6 +11,9 @@ New Relic Notification Channels are part of the larger Alert system within New R
 
 The `newrelic_notification_channel` table provides insights into the notification channels within New Relic's Alert system. As a DevOps engineer, explore channel-specific details through this table, including type, configuration, and linked policies. Utilize it to manage and audit your alert communication settings, such as verifying the correct configuration of channels, understanding the distribution of alert types across channels, and ensuring the proper linkage to alert policies.
 
+**Important Notes**
+- You must specify the `account_id` in the `where` clause to query this table.
+
 ## Examples
 
 ### List all notification channels for a specific account

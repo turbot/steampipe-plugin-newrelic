@@ -11,6 +11,9 @@ New Relic Application Performance Monitoring (APM) is a tool that provides real-
 
 The `newrelic_apm_application_deployment` table provides insights into application deployments within New Relic APM. As a DevOps engineer, explore deployment-specific details through this table, including revision, timestamp, user, and change log. Utilize it to track the history of application deployments, identify changes, and understand the impact of each deployment on application performance.
 
+**Important Notes**
+- You must specify the `app_id` in the `where` clause to query this table.
+
 ## Examples
 
 ### List all deployments
@@ -47,8 +50,8 @@ from
   newrelic_apm_application_deployment
 where
   app_id in (
-    select id 
-    from newrelic_apm_application 
+    select id
+    from newrelic_apm_application
     where name = 'my-app'
 );
 ```

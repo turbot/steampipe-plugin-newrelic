@@ -11,6 +11,9 @@ New Relic's Application Performance Monitoring (APM) is a cloud-based service th
 
 The `newrelic_apm_application_metric` table provides insights into the performance metrics of applications monitored by New Relic's APM service. As a DevOps engineer or application developer, you can explore detailed metrics through this table, including response times, throughput, and error rates. Utilize it to monitor application performance, identify potential issues, and optimize your applications for better user experience.
 
+**Important Notes**
+- You must specify the `app_id` in the `where` clause to query this table.
+
 ## Examples
 
 ### List all metrics available for a specific application
@@ -36,7 +39,7 @@ select
   m.values as values
 from
   newrelic_apm_application_metric m,
-  newrelic_apm_application a 
+  newrelic_apm_application a
 where
   m.app_id = a.id
 and m.name ilike '%cpu%';

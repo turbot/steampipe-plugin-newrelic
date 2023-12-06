@@ -11,6 +11,9 @@ New Relic Notification Destinations are channels configured in New Relic to rece
 
 The `newrelic_notification_destination` table provides insights into the notification channels configured in New Relic. As a DevOps engineer, you can explore details about these channels, including their types and configurations, through this table. Utilize it to manage and optimize your alert system by understanding the distribution of notifications across different channels.
 
+**Important Notes**
+- You must specify the `account_id` in the `where` clause to query this table.
+
 ## Examples
 
 ### List all notification destinations for a specific account
