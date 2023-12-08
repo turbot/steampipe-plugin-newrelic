@@ -16,7 +16,7 @@ The `newrelic_component` table provides insights into the components of applicat
 ### List all components
 Explore the health status and metrics summary of all components in your New Relic account to gain insights into their performance and condition. This could be useful in identifying components that require attention or optimization.
 
-```sql
+```sql+postgres
 select
   id,
   name
@@ -26,13 +26,35 @@ from
   newrelic_component;
 ```
 
+```sql+sqlite
+select
+  id,
+  name,
+  health_status,
+  summary_metrics
+from
+  newrelic_component;
+```
+
 ### List components for a specific plugin
 Explore the components associated with a specific plugin to gain insights into their health status and key metrics. This can be useful in assessing the performance and reliability of the plugin in question.
 
-```sql
+```sql+postgres
 select
   id,
   name
+  health_status,
+  summary_metrics
+from
+  newrelic_component
+where
+  plugin_id = 634;
+```
+
+```sql+sqlite
+select
+  id,
+  name,
   health_status,
   summary_metrics
 from

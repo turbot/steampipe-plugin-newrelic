@@ -16,7 +16,32 @@ The `newrelic_alert_event` table provides insights into alert events within New 
 ### List alert events for open incidents
 Determine the areas in which alert events are linked to currently open incidents. This is useful for identifying ongoing issues that require immediate attention or further investigation.
 
-```sql
+```sql+postgres
+select
+  id,
+  timestamp,
+  event_type,
+  product,
+  description,
+  entity_id,
+  entity_type,
+  entity_group_id,
+  priority,
+  incident_id
+from
+  newrelic_alert_event
+where
+  incident_id in (
+    select
+      id
+    from
+      newrelic_alert_incident
+    where
+      closed_at is null
+  );
+```
+
+```sql+sqlite
 select
   id,
   timestamp,
@@ -44,7 +69,25 @@ where
 ### List alert events for a specific product
 Explore alert events associated with a specific product to gain insights into incidents, their priority, and related entities. This can be particularly useful for troubleshooting product-related issues and understanding their impact.
 
-```sql
+```sql+postgres
+select
+  id,
+  timestamp,
+  event_type,
+  product,
+  description,
+  entity_id,
+  entity_type,
+  entity_group_id,
+  priority,
+  incident_id
+from
+  newrelic_alert_event
+where
+  product = 'my-product';
+```
+
+```sql+sqlite
 select
   id,
   timestamp,

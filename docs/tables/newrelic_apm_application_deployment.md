@@ -19,7 +19,22 @@ The `newrelic_apm_application_deployment` table provides insights into applicati
 ### List all deployments
 Explore all deployments related to a specific application, including their individual details and timestamps. This aids in tracking the history of deployments and identifying any changes made by users over time.
 
-```sql
+```sql+postgres
+select
+  id,
+  description,
+  revision,
+  changelog,
+  user,
+  timestamp,
+  app_id
+from
+  newrelic_apm_application_deployment
+where
+  app_id = 45;
+```
+
+```sql+sqlite
 select
   id,
   description,
@@ -37,7 +52,26 @@ where
 ### List all deployments for a specific application by name
 This example allows you to identify all deployments associated with a particular application, helping you track changes and updates made over time. This can be useful in managing application versions and understanding the history of application modifications.
 
-```sql
+```sql+postgres
+select
+  id,
+  description,
+  revision,
+  changelog,
+  user,
+  timestamp,
+  app_id
+from
+  newrelic_apm_application_deployment
+where
+  app_id in (
+    select id 
+    from newrelic_apm_application 
+    where name = 'my-app'
+);
+```
+
+```sql+sqlite
 select
   id,
   description,

@@ -19,7 +19,27 @@ The `newrelic_notification_destination` table provides insights into the notific
 ### List all notification destinations for a specific account
 Determine the areas in which notifications are being sent for a specific user account. This can be useful to audit and manage where notifications are directed, ensuring the right individuals or teams are alerted.
 
-```sql
+```sql+postgres
+select
+  id,
+  name,
+  account_id,
+  active,
+  created_at,
+  updated_at,
+  updated_by,
+  auth,
+  is_user_authenticated,
+  properties,
+  status,
+  type
+from
+  newrelic_notification_destination
+where
+  account_id = 21355;
+```
+
+```sql+sqlite
 select
   id,
   name,

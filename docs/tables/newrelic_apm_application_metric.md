@@ -19,7 +19,17 @@ The `newrelic_apm_application_metric` table provides insights into the performan
 ### List all metrics available for a specific application
 Explore which metrics are available for a specific application to understand its performance and usage. This can help in identifying areas that may require attention or optimization.
 
-```sql
+```sql+postgres
+select
+  name,
+  values
+from
+  newrelic_apm_application_metric
+where
+  app_id = 45;
+```
+
+```sql+sqlite
 select
   name,
   values
@@ -32,7 +42,7 @@ where
 ### List all available cpu based metrics for all applications
 Discover the segments that provide a comprehensive view of CPU-related metrics across all applications. This is beneficial for performance monitoring and optimization, helping to identify areas that may require attention or improvement.
 
-```sql
+```sql+postgres
 select
   a.name as app,
   m.name as metric,
@@ -43,4 +53,17 @@ from
 where
   m.app_id = a.id
 and m.name ilike '%cpu%';
+```
+
+```sql+sqlite
+select
+  a.name as app,
+  m.name as metric,
+  m.values as values
+from
+  newrelic_apm_application_metric m,
+  newrelic_apm_application a 
+where
+  m.app_id = a.id
+and m.name like '%cpu%';
 ```

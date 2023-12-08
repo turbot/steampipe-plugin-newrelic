@@ -16,7 +16,16 @@ The `newrelic_account` table provides insights into accounts within New Relic. A
 ### List all accounts
 Explore which New Relic accounts are available and determine the types of reporting events associated with each. This can help with monitoring and understanding the types of alerts and events that are being generated.
 
-```sql
+```sql+postgres
+select
+  id,
+  name,
+  reporting_event_types
+from
+  newrelic_account;
+```
+
+```sql+sqlite
 select
   id,
   name,

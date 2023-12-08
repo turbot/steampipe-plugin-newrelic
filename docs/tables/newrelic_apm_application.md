@@ -16,7 +16,38 @@ The `newrelic_apm_application` table provides insights into application performa
 ### List all applications monitored by apm
 Explore the performance and health status of all applications under monitoring. This query helps in gaining insights into application response times, error rates, and apdex scores, allowing you to assess their overall performance and troubleshoot any potential issues.
 
-```sql
+```sql+postgres
+select
+  id,
+  name,
+  language,
+  health_status,
+  reporting,
+  last_reported_at,
+  response_time,
+  throughput,
+  error_rate,
+  apdex_target,
+  apdex_score,
+  host_count,
+  instance_count,
+  concurrent_instance_count,
+  end_user_response_time,
+  end_user_throughput,
+  end_user_apdex_target,
+  end_user_apdex_score,
+  end_user_apdex_threshold,
+  real_user_monitoring,
+  server_side_config,
+  servers,
+  hosts,
+  instances,
+  alert_policy_id
+from
+  newrelic_apm_application;
+```
+
+```sql+sqlite
 select
   id,
   name,
@@ -50,7 +81,7 @@ from
 ### List basic information for all applications written in a specific programming language
 Explore applications written in a specific programming language to gain insights into their health status and the count of hosts and instances. This helps in assessing the performance and health of applications and can guide in resource allocation.
 
-```sql
+```sql+postgres
 select
   id,
   name,
@@ -64,10 +95,24 @@ where
   language = 'java';
 ```
 
+```sql+sqlite
+select
+  id,
+  name,
+  language,
+  health_status,
+  host_count,
+  instance_count
+from
+  newrelic_apm_application
+where
+  language = 'java';
+```
+
 ### List applications using a specific named policy
 Explore which applications are utilizing a specific policy to gain insights into the policy's impact and effectiveness. This query is particularly useful for managing and optimizing policy usage across different applications.
 
-```sql
+```sql+postgres
 select
   id,
   name,
@@ -75,6 +120,27 @@ select
   health_status,
   host_count,
   instance_count,
+from
+  newrelic_apm_application
+where
+  alert_policy_id = (
+    select 
+      id 
+    from 
+      newrelic_alert_policy 
+    where 
+      name = 'test'
+  );
+```
+
+```sql+sqlite
+select
+  id,
+  name,
+  language,
+  health_status,
+  host_count,
+  instance_count
 from
   newrelic_apm_application
 where

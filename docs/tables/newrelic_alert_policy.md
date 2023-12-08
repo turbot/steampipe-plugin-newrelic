@@ -16,7 +16,18 @@ The `newrelic_alert_policy` table provides insights into Alert Policies within N
 ### List all alert policies
 Explore the various alert policies, including when they were created and last updated, to better manage and respond to incidents in your New Relic environment. This can help improve your incident response strategy by keeping you informed about all the existing alert policies.
 
-```sql
+```sql+postgres
+select
+  id,
+  name,
+  incident_preference,
+  created_at,
+  updated_at
+from
+  newrelic_alert_policy;
+```
+
+```sql+sqlite
 select
   id,
   name,
@@ -30,7 +41,20 @@ from
 ### Obtain a single alert policy by id
 Gain insights into a specific alert policy by using its unique identifier. This is useful in understanding the alert's preferences and tracking when it was created or last updated.
 
-```sql
+```sql+postgres
+select
+  id,
+  name,
+  incident_preference,
+  created_at,
+  updated_at
+from
+  newrelic_alert_policy
+where
+  id = 142354;
+```
+
+```sql+sqlite
 select
   id,
   name,

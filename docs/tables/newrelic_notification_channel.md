@@ -19,7 +19,27 @@ The `newrelic_notification_channel` table provides insights into the notificatio
 ### List all notification channels for a specific account
 Discover the segments that have active notifications for a specific user account. This can help in managing and organizing notifications, ensuring that important updates are not missed.
 
-```sql
+```sql+postgres
+select
+  id,
+  name,
+  account_id,
+  active,
+  created_at,
+  updated_at,
+  updated_by,
+  destination_id,
+  product,
+  properties,
+  status,
+  type
+from
+  newrelic_notification_channel
+where
+  account_id = 21355;
+```
+
+```sql+sqlite
 select
   id,
   name,

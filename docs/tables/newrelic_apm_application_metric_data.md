@@ -20,7 +20,7 @@ The `newrelic_apm_application_metric_data` table provides insights into applicat
 ### List metrics for an application after a certain date
 Explore the performance metrics of a specific application for the past year. This is useful in identifying trends or issues that have arisen over time, helping to inform future development and troubleshooting efforts.
 
-```sql
+```sql+postgres
 select
   name,
   values
@@ -30,4 +30,16 @@ where
   app_id = 45
 and
   "from" >= (now() - interval '1 YEAR')::date;
+```
+
+```sql+sqlite
+select
+  name,
+  values
+from
+  newrelic_apm_application_metric_data
+where
+  app_id = 45
+and
+  "from" >= date('now','-1 year');
 ```
