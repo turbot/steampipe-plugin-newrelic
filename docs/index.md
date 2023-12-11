@@ -88,7 +88,4 @@ export NEW_RELIC_API_KEY=NRAK-XX0X0XX00XXXX0000XXXXXXXXX0X
 export NEW_RELIC_REGION=us
 ```
 
-## Get involved
 
-- Open source: https://github.com/turbot/steampipe-plugin-newrelic
-- Community: [Join #steampipe on Slack →](https://turbot.com/community/join)
