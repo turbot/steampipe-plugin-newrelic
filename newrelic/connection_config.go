@@ -3,24 +3,15 @@ package newrelic
 import (
 	"context"
 	"errors"
+	"os"
+
 	"github.com/newrelic/newrelic-client-go/v2/newrelic"
 	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
-	"github.com/turbot/steampipe-plugin-sdk/v5/plugin/schema"
-	"os"
 )
 
 type PluginConfig struct {
-	APIKey *string `cty:"api_key"`
-	Region *string `cty:"region"`
-}
-
-var ConfigSchema = map[string]*schema.Attribute{
-	"api_key": {
-		Type: schema.TypeString,
-	},
-	"region": {
-		Type: schema.TypeString,
-	},
+	APIKey *string `hcl:"api_key"`
+	Region *string `hcl:"region"`
 }
 
 func ConfigInstance() interface{} {
