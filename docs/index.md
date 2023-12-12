@@ -8,6 +8,7 @@ short_name: "newrelic"
 description: "Steampipe plugin for querying New Relic Alerts, Events and other resources."
 og_description: Query New Relic with SQL! Open source CLI. No DB required.
 og_image: "/images/plugins/turbot/newrelic-social-graphic.png"
+engines: ["steampipe", "sqlite", "postgres", "export"]
 ---
 
 # New Relic + Steampipe
@@ -87,7 +88,4 @@ export NEW_RELIC_API_KEY=NRAK-XX0X0XX00XXXX0000XXXXXXXXX0X
 export NEW_RELIC_REGION=us
 ```
 
-## Get involved
 
-- Open source: https://github.com/turbot/steampipe-plugin-newrelic
-- Community: [Join #steampipe on Slack →](https://turbot.com/community/join)
