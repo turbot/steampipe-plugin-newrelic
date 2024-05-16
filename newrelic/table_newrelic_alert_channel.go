@@ -20,7 +20,7 @@ func tableAlertChannel() *plugin.Table {
 			KeyColumns: plugin.SingleColumn("id"),
 			Hydrate:    getAlertChannel,
 		},
-		Columns: alertChannelColumns(),
+		Columns: commonColumns(alertChannelColumns()),
 	}
 }
 

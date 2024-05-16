@@ -16,7 +16,7 @@ func tableAccount() *plugin.Table {
 		List: &plugin.ListConfig{
 			Hydrate: listAccounts,
 		},
-		Columns: accountColumns(),
+		Columns: commonColumns(accountColumns()),
 	}
 }
 

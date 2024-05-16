@@ -31,7 +31,7 @@ func tableComponent() *plugin.Table {
 			Hydrate:    getComponent,
 			KeyColumns: plugin.SingleColumn("id"),
 		},
-		Columns: componentColumns(),
+		Columns: commonColumns(componentColumns()),
 	}
 }
 

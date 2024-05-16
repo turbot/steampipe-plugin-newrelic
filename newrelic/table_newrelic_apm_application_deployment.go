@@ -22,7 +22,7 @@ func tableApmApplicationDeployment() *plugin.Table {
 				},
 			},
 		},
-		Columns: apmApplicationDeploymentColumns(),
+		Columns: commonColumns(apmApplicationDeploymentColumns()),
 	}
 }
 

@@ -21,7 +21,7 @@ func tablePlugin() *plugin.Table {
 			Hydrate:    getPlugins,
 			KeyColumns: plugin.SingleColumn("id"),
 		},
-		Columns: pluginColumns(),
+		Columns: commonColumns(pluginColumns()),
 	}
 }
 

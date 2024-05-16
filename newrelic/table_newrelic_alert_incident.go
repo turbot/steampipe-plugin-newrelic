@@ -16,7 +16,7 @@ func tableAlertIncident() *plugin.Table {
 		List: &plugin.ListConfig{
 			Hydrate: listAlertIncidents,
 		},
-		Columns: alertIncidentColumns(),
+		Columns: commonColumns(alertIncidentColumns()),
 	}
 }
 

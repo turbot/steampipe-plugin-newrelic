@@ -27,7 +27,7 @@ func tableApmApplicationInstance() *plugin.Table {
 				},
 			},
 		},
-		Columns: apmApplicationInstanceColumns(),
+		Columns: commonColumns(apmApplicationInstanceColumns()),
 	}
 }
 

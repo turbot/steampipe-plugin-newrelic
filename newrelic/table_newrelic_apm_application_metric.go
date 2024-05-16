@@ -27,7 +27,7 @@ func tableApmApplicationMetric() *plugin.Table {
 				},
 			},
 		},
-		Columns: apmApplicationMetricColumns(),
+		Columns: commonColumns(apmApplicationMetricColumns()),
 	}
 }
 
