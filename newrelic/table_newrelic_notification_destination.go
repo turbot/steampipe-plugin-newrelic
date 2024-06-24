@@ -25,7 +25,7 @@ func tableNotificationDestination() *plugin.Table {
 				},
 			},
 		},
-		Columns: notificationDestinationColumns(),
+		Columns: commonColumns(notificationDestinationColumns()),
 	}
 }
 

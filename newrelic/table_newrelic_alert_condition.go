@@ -32,7 +32,7 @@ func tableAlertCondition() *plugin.Table {
 			},
 			Hydrate: getAlertCondition,
 		},
-		Columns: alertConditionColumns(),
+		Columns: commonColumns(alertConditionColumns()),
 	}
 }
 

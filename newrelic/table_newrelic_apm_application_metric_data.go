@@ -36,7 +36,7 @@ func tableApmApplicationMetricData() *plugin.Table {
 				},
 			},
 		},
-		Columns: apmApplicationMetricDataColumns(),
+		Columns: commonColumns(apmApplicationMetricDataColumns()),
 	}
 }
 

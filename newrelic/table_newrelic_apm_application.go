@@ -30,7 +30,7 @@ func tableApmApplication() *plugin.Table {
 			Hydrate:    getApmApplication,
 			KeyColumns: plugin.SingleColumn("id"),
 		},
-		Columns: apmApplicationColumns(),
+		Columns: commonColumns(apmApplicationColumns()),
 	}
 }
 

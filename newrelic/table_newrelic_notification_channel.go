@@ -25,7 +25,7 @@ func tableNotificationChannel() *plugin.Table {
 				},
 			},
 		},
-		Columns: notificationChannelColumns(),
+		Columns: commonColumns(notificationChannelColumns()),
 	}
 }
 

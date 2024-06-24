@@ -2,6 +2,7 @@ package newrelic
 
 import (
 	"context"
+
 	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
 	"github.com/turbot/steampipe-plugin-sdk/v5/plugin/transform"
 )
@@ -11,6 +12,12 @@ func Plugin(ctx context.Context) *plugin.Plugin {
 		Name: "steampipe-plugin-newrelic",
 		ConnectionConfigSchema: &plugin.ConnectionConfigSchema{
 			NewInstance: ConfigInstance,
+		},
+		ConnectionKeyColumns: []plugin.ConnectionKeyColumn{
+			{
+				Name:    "profile_id",
+				Hydrate: getCurrentUserIdForConnection,
+			},
 		},
 		DefaultTransform: transform.FromGo(),
 		TableMap: map[string]*plugin.Table{

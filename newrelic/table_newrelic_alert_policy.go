@@ -28,7 +28,7 @@ func tableAlertPolicy() *plugin.Table {
 			KeyColumns: plugin.SingleColumn("id"),
 			Hydrate:    getAlertPolicy,
 		},
-		Columns: alertPolicyColumns(),
+		Columns: commonColumns(alertPolicyColumns()),
 	}
 }
 

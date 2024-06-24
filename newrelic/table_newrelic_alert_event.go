@@ -50,7 +50,7 @@ func tableAlertEvent() *plugin.Table {
 			},
 			Hydrate: listAlertEvents,
 		},
-		Columns: alertEventColumns(),
+		Columns: commonColumns(alertEventColumns()),
 	}
 }
 
