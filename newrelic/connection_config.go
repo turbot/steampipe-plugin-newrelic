@@ -6,7 +6,7 @@ import (
 	"os"
 
 	"github.com/newrelic/newrelic-client-go/v2/newrelic"
-	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
+	"github.com/turbot/steampipe-plugin-sdk/v6/plugin"
 )
 
 type PluginConfig struct {
@@ -19,11 +19,11 @@ func ConfigInstance() interface{} {
 }
 
 func GetConfig(connection *plugin.Connection) PluginConfig {
-	if connection == nil || connection.Config == nil {
+	if connection == nil || connection.GetConfig() == nil {
 		return PluginConfig{}
 	}
 
-	config, _ := connection.Config.(PluginConfig)
+	config, _ := connection.GetConfig().(PluginConfig)
 	return config
 }
 
