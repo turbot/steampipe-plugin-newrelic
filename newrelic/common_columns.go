@@ -8,10 +8,10 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/turbot/steampipe-plugin-sdk/v5/grpc/proto"
-	"github.com/turbot/steampipe-plugin-sdk/v5/memoize"
-	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
-	"github.com/turbot/steampipe-plugin-sdk/v5/plugin/transform"
+	"github.com/turbot/steampipe-plugin-sdk/v6/grpc/proto"
+	"github.com/turbot/steampipe-plugin-sdk/v6/memoize"
+	"github.com/turbot/steampipe-plugin-sdk/v6/plugin"
+	"github.com/turbot/steampipe-plugin-sdk/v6/plugin/transform"
 )
 
 // The Newrelic API key is specific to the user.
@@ -31,7 +31,7 @@ func commonColumns(c []*plugin.Column) []*plugin.Column {
 }
 
 func getCurrentUserIdForConnection(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateData) (interface{}, error) {
-	user, err := getCurrentUserIdMemoized(ctx,d, h)
+	user, err := getCurrentUserIdMemoized(ctx, d, h)
 	if err != nil {
 		return nil, err
 	}
@@ -88,7 +88,7 @@ func getCurrentUserIdUncached(ctx context.Context, d *plugin.QueryData, h *plugi
 	if err != nil {
 		return nil, err
 	}
-	defer resp.Body.Close()
+	defer func() { _ = resp.Body.Close() }()
 
 	// Read and print the response body
 	body, err := io.ReadAll(resp.Body)
